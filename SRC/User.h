@@ -1,0 +1,24 @@
+#ifndef USER_H
+#define USER_H
+
+#include <string>
+#include <vector>
+#include <list>
+#include <iostream>
+#include <assert.h>
+
+class User
+{
+private:
+	string userId;
+
+	string userName;
+
+	string password;
+
+
+public:
+	boolean authenticate();
+
+};
+#endif
