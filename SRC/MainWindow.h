@@ -1,37 +1,34 @@
-#ifndef MAIN_WINDOW_H
-#define MAIN_WINDOW_H
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
-#include <string>
-#include <vector>
-#include <list>
-#include <iostream>
-#include <assert.h>
+#include <QMainWindow>
 
-#include "QMenuBar.h"
-#include "QMenu.h"
+QT_BEGIN_NAMESPACE
+namespace Ui {
+class MainWindow;
+}
+QT_END_NAMESPACE
 
-class MainWindow
+class MainWindow : public QMainWindow
 {
-private:
-	QMenuBar menuBar;
-
-	QMenu fileMenu;
-
-	QMenu userMenu;
-
+    Q_OBJECT
 
 public:
-	void MainWindow();
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+    
+private slots:
+    void on_pushButton_clicked();
+    
+    void on_Signup_clicked();
 
-	void createMenus();
+    void on_Login_clicked();
 
-	void showAboutDialog();
+    void on_Login_clicked(bool checked);
 
-	void showAdminDialog();
+    void on_groupBox_clicked();
 
-	void showInstructorDialog();
-
-	void showStudentDialog();
-
+private:
+    Ui::MainWindow *ui;
 };
-#endif
+#endif // MAINWINDOW_H
