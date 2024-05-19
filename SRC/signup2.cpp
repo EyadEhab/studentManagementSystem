@@ -15,9 +15,9 @@ Signup2::~Signup2()
 
 void Signup2::on_signUp_4_clicked()
 {
-    QString fname = "C:\\Users\\Eyad\\OneDrive\\Documents\\stmmmmm\\Users.txt";
+    QString fname = "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\Users.txt";
     QFile file(fname);
-    qDebug() << "file";
+
 
     if(file.open(QIODevice::Append | QIODevice::ReadWrite)){
         qDebug() << "writing";
@@ -46,6 +46,5 @@ void Signup2::on_signUp_4_clicked()
     }
     file.close();
     QMessageBox::information(this, "Account Saved", "You can close the window now, account saved.");
-
 }
 

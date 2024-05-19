@@ -101,6 +101,7 @@ public:
         instractur_4->setText(QCoreApplication::translate("Signup2", "Instractur", nullptr));
         admin_4->setText(QCoreApplication::translate("Signup2", "adminstrator", nullptr));
         label_12->setText(QCoreApplication::translate("Signup2", "User Id : ", nullptr));
+        userId_4->setText(QString());
     } // retranslateUi
 
 };

@@ -7,6 +7,7 @@
 *****************************************************************************/
 
 #include "../../../mainwindow.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -111,6 +112,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
 
         case 1: _t->on_Signup_clicked(); break;
         case 2: _t->on_Login_clicked(); break;
+
 
         default: ;
         }
