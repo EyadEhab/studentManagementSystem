@@ -31,33 +31,56 @@ void MainWindow::on_Login_clicked()
     int lineCount = 0;
     while (!stream.atEnd()) {
         QString line = stream.readLine();
-        if (line.split(':').size() == 4) {
+
             ++lineCount;
-        }
+
     }
 
     // Reset the file stream to the beginning of the file
     file.seek(0);
+    int index = 0;
+    QString line = stream.readLine();
+    QStringList parts = line.split(':');
+    while (!stream.atEnd() && index < lineCount) {
+    QString typef ="";
+    typef = parts[2];
+    ++index;
+    }
+    file.seek(0);
+    if(typef=="instractor") {
+        instructor** users = new instructor*[lineCount];
+        for (int i = 0; i < lineCount; i++) {
+            users[i] = new user;
+        }
+    }
+    if(typef=="adminstrator") {
+        adminstrator** users = new adminstrator*[lineCount];
+        for (int i = 0; i < lineCount; i++) {
+            users[i] = new user;
+        }
+    }
+    if(typef=="student") {
+        student** users = new student*[lineCount];
+        for (int i = 0; i < lineCount; i++) {
+            users[i] = new user;
+        }
+    }
 
     // Allocate dynamic array to hold the User structs
-    user** users = new user*[lineCount];
-    for (int i = 0; i < lineCount; i++) {
-        users[i] = new user;
-    }
+
 
     // Second pass: read the lines into the array
     int index = 0;
     while (!stream.atEnd() && index < lineCount) {
-        QString line = stream.readLine();
-        QStringList parts = line.split(':');
-        if (parts.size() == 4) {
+
+
+
+        if(parts.size()>=3){
             users[index]->setUserId(parts[0]);
-            users[index]->setUserName(parts[1]);
-            users[index]->setPassword(parts[2]);
+            users[index]->setPassword(parts[1]);
             // Assuming parts[3] is not needed for the login check
             ++index;
-        } else {
-            qDebug() << "Skipping invalid line: " << line;
+        }
         }
     }
 

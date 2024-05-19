@@ -12,10 +12,9 @@ class userData;
 class user
 {
 public:
-    user(const QString& id= "", const QString& name="", const QString& pass="");
+    user(const QString& id= "", const QString& pass="");
 
     QString getUserId() ;
-    QString getUserName() ;
     QString getPassword() ;
 
     bool authenticate( QString inputPassword) ;

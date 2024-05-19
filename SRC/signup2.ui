@@ -16,7 +16,7 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>80</x>
      <y>70</y>
      <width>711</width>
      <height>451</height>
@@ -36,25 +36,6 @@
     </property>
     <property name="text">
      <string>Sign up</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_10">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>100</y>
-      <width>151</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>20</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="text">
-     <string>Username : </string>
     </property>
    </widget>
    <widget class="QLabel" name="label_11">
@@ -133,8 +114,8 @@
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>40</y>
+      <x>40</x>
+      <y>90</y>
       <width>141</width>
       <height>51</height>
      </rect>
@@ -152,8 +133,8 @@
    <widget class="QLineEdit" name="userId_4">
     <property name="geometry">
      <rect>
-      <x>170</x>
-      <y>50</y>
+      <x>180</x>
+      <y>100</y>
       <width>221</width>
       <height>31</height>
      </rect>
@@ -162,21 +143,11 @@
      <string/>
     </property>
    </widget>
-   <widget class="QLineEdit" name="userName_4">
-    <property name="geometry">
-     <rect>
-      <x>200</x>
-      <y>110</y>
-      <width>221</width>
-      <height>31</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="password_4">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>180</y>
+      <x>220</x>
+      <y>190</y>
       <width>221</width>
       <height>31</height>
      </rect>

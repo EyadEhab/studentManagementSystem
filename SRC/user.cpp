@@ -5,15 +5,14 @@
 
 
 
-user::user(const QString& id , const QString& name , const QString& pass):userId(id),userName(name),password(pass){
+user::user(const QString& id , const QString& name , const QString& pass):userId(id),password(pass){
 
 }
 
 QString user::getUserId() {
     return userId;}
 
-QString  user::getUserName()
-    {return userName;}
+
 
 
     bool user::authenticate( QString inputPassword) {
@@ -21,9 +20,6 @@ QString  user::getUserName()
     }
     void user::setUserId(QString id){
         userId=id;
-    }
-    void user::setUserName(QString name) {
-        userName = name;
     }
     void user::setPassword(QString pass) {
         password=pass;

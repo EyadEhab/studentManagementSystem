@@ -23,7 +23,6 @@ void Signup2::on_signUp_4_clicked()
         qDebug() << "writing";
         QTextStream stream(&file);
         QString userId = ui->userId_4->text();
-        QString userName = ui->userName_4->text();
         QString password = ui->password_4->text();
         if(ui->admin_4->isChecked()){
             kind="adminstrator";
@@ -35,8 +34,6 @@ void Signup2::on_signUp_4_clicked()
             kind="instractor";
         }
         stream << userId;
-        stream << ":";
-        stream << userName;
         stream << ":";
         stream << password;
         stream << ":";
