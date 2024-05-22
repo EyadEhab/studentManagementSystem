@@ -41,9 +41,9 @@ void instructor::on_addCourse_clicked()
 
 void instructor::on_removeCourse_clicked()
 {
-   QString courseName=ui->removeCourse_2->currentText();
+   QString courseName=ui->removeCourse_2->text();
 
-    int size=arr[courses];
+    int size[courses];
    for( int i=0 ; i<size;i++)
         if (course[i]==courseName)
            QString arr[new_courses]=course.slice(0,i).concat(course.slice(i+1));
@@ -57,17 +57,17 @@ void instructor::on_removeCourse_clicked()
 void instructor::on_addMaterial_clicked()
 {
     Material obj(arr[max_material])(QString MaterialName,QString content);
-    QString subject=ui->addMaterial_2>currentText();
-    QString courses=ui->addMaterial_3>currentText();
+    QString subject=ui->addMaterial_2>text();
+    QString courses=ui->addMaterial_3>text();
 
 }
 
 
 void instructor::on_removeMaterial_clicked()
 {
-    QString MaterialName=ui->removeMaterial_2->currentText();
+    QString MaterialName=ui->removeMaterial_2->text();
 
-    int size=arr[Materials];
+    int size[Materials];
     for( int i=0 ; i<size;i++)
         if (mateial[i]==MaterialName)
             QString arr[new_materials]=Material.slice(0,i).concat(Material.slice(i+1));
@@ -86,7 +86,7 @@ void instructor::on_getmaxgrade_clicked()
             max=grade[i];
         }
     }
-    qDebug<<max<<endl;
+    qDebug<<max<<'\n';
 }
 void instructor::on_getmingrade_clicked()
 {

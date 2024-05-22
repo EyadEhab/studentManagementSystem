@@ -1,5 +1,6 @@
 #ifndef ADMINSTRATOR_H
 #define ADMINSTRATOR_H
+#include "user.h"
 
 #include <QDialog>
 
@@ -7,7 +8,7 @@ namespace Ui {
 class adminstrator;
 }
 
-class adminstrator : public QDialog
+class adminstrator : public QDialog, public user
 {
     Q_OBJECT
 

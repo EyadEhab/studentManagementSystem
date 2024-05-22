@@ -12,7 +12,7 @@ class userData;
 class user
 {
 public:
-    user(const QString& id= "", const QString& pass="");
+    user(const QString& id= "",const  QString& pass="");
 
     QString getUserId() ;
     QString getPassword() ;
@@ -28,7 +28,6 @@ public:
 private:
 
     QString userId;
-    QString userName;
     QString password;
 };
 

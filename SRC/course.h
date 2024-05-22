@@ -1,48 +1,26 @@
 #ifndef COURSE_H
 #define COURSE_H
-#include <QMainWindow>
-#include <iostream>
-#include <fstream>
-#include <cstdio>
-#include <string>
+
 #include <QString>
 #include <QDebug>
-#include<signup2.h>
-#include <QDir>
-#include <user.h>
-#include <QTextStream>
-#include <QMainWindow>
-#include <QDialog>
-#include <QSpinBox>
-#include <QTextEdit>
-#include <QComboBox>
-#include <QPushButton>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
-#include <QFile>
-#include <QIODevice>
-#include <QTextStream>
 #include <utility>
 #include <string>
+#include "student.h"
+
+const int MAX_STUDENTS = 100;
 
 class Course
 {
 public:
-    Course();
-    void addStudent(Student*);
-    void removeStudent(Student*);
-    updataGrade(Student* , float);
+    Course(const QString& name = "") : courseName(name) {}
+
+    void addStudent(student* student);
+    void removeStudent(student* student);
+    void updateGrade(student* student, float grade);
 
 private:
     QString courseName;
-    QString courseCode;
-    QString instuctorId[MAX_INSTRUCTORS];
-    int numInstructors;
-    int credits;
-    pair<QString, float> studentGrades[MAX_STUDENTS];
-    int numStudents;
-
-
+    std::pair<QString, float> studentGrades[MAX_STUDENTS];
 };
 
 #endif // COURSE_H

@@ -1,16 +1,11 @@
 #include "student.h"
 #include "ui_student.h"
-#include <QFile>
-#include <QTextStream>
-#include <QStringList>
-#include <QDebug>
 
 student::student(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::student)
 {
     ui->setupUi(this);
-    connect(ui->pushButton, &QPushButton::clicked, this, &MainWindow::onPushButtonClicked);
 }
 
 student::~student()
@@ -18,26 +13,20 @@ student::~student()
     delete ui;
 }
 
-
-QStringList MainWindow::readCourseNames(const QString &fileName) {
-    QStringList courseList;
-    QFile file(fileName);
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "Could not open file for reading";
-        return courseList;
-    }
-
-    QTextStream in(&file);
-    while (!in.atEnd()) {
-        QString line = in.readLine();
-        courseList.append(line.trimmed());
-    }
-    file.close();
-    return courseList;
+student::student(QString id, QString pass): user(id , pass), ui(new Ui::student)
+{
+    ui->setupUi(this);
 }
 
-void student::on_Next_clicked(){
+void student::setEnrolledCourses(const QString e[])
+{
+    for (int i = 0; i < 5; ++i) {
+        this->enrolledCourses[i] = e[i];
+    }
+}
 
+void student::on_Next_clicked()
+{
     qDebug() << "Next";
     QString option = "";
 
@@ -45,7 +34,7 @@ void student::on_Next_clicked(){
         option = "Enroll Course";
     } else if (ui->drop->isChecked()) {
         option = "Drop Course";
-    } else if (ui->viewgrade->isChecked()) {
+    } else if (ui->viewGrade->isChecked()) {
         option = "View Grade";
     }
 
@@ -62,19 +51,14 @@ void student::on_Next_clicked(){
         } else if (option == "View Grade") {
             view_grade(courseName);
         }
-    }
-    else {
+    } else {
         qDebug() << "Course does not exist";
-        // Optionally, show a message to the user that the course does not exist
     }
 }
 
-void MainWindow::enroll_course(const QString &courseName) {
-
+void student::enroll_course(const QString &courseName)
+{
     qDebug() << "Enrolling in course:" << courseName;
-    // reading
-    QString course = ui -> courseName ->text();
-
 
     QString fname = "C:\\Users\\Eyad\\OneDrive\\Documents\\stmmmmm\\Users.txt";
     QFile file(fname);
@@ -85,128 +69,113 @@ void MainWindow::enroll_course(const QString &courseName) {
     }
 
     QTextStream stream(&file);
+    QString content;
+    QStringList parts;
+    QString userId = this->getUserId();
+    bool enrolled = false;
 
-    // First pass: count the number of valid lines
-    int lineCount = 0;
     while (!stream.atEnd()) {
         QString line = stream.readLine();
+        parts = line.split(':');
 
-        ++lineCount;
-    }
-
-
-    // Reset the file stream to the beginning of the file
-    file.seek(0);
-
-    // Allocate dynamic array to hold the User structs
-    student* users = new student[lineCount];
-
-    // Second pass: read the lines into the array
-    int index = 0;
-    while (!stream.atEnd() && index < lineCount) {
-        QString line = stream.readLine();
-        QStringList parts = line.split(':');
-        if (parts.size() == 3) {
-            users[index].userIdf = parts[0];
-            users[index].passwordf = parts[1];
-            users[index].typef = parts[2];
-
-            s = parts.size();
-            ++index;
-        } else if(parts.size()==4){
-            users[index].userIdf = parts[0];
-            users[index].passwordf = parts[1];
-            users[index].typef = parts[2];
-            users[index].enrolledcourses[0] = parts[3];
-
-            s = parts.size();
-            ++index;
-        }else if(parts.size()==5){
-            users[index].userIdf = parts[0];
-            users[index].passwordf = parts[1];
-            users[index].typef = parts[2];
-            users[index].enrolledcourses[0] = parts[3];
-            users[index].enrolledcourses[1] = parts[4];
-
-            s = parts.size();
-            ++index;
-        }else if(parts.size()==6){
-            users[index].userIdf = parts[0];
-            users[index].passwordf = parts[1];
-            users[index].typef = parts[2];
-            users[index].enrolledcourses[0] = parts[3];
-            users[index].enrolledcourses[1] = parts[4];
-            users[index].enrolledcourses[2] = parts[5];
-
-            s = parts.size();
-            ++index;
-        }else if(parts.size()==7){
-            users[index].userIdf = parts[0];
-            users[index].passwordf = parts[1];
-            users[index].typef = parts[2];
-            users[index].enrolledcourses[0] = parts[3];
-            users[index].enrolledcourses[1] = parts[4];
-            users[index].enrolledcourses[2] = parts[5];
-            users[index].enrolledcourses[3] = parts[6];
-
-            s = parts.size();
-            ++index;
-       }else if(parts.size()==8){
-            users[index].userIdf = parts[0];
-            users[index].passwordf = parts[1];
-            users[index].typef = parts[2];
-            users[index].enrolledcourses[0] = parts[3];
-            users[index].enrolledcourses[1] = parts[4];
-            users[index].enrolledcourses[2] = parts[5];
-            users[index].enrolledcourses[3] = parts[6];
-            users[index].enrolledcourses[4] = parts[7];
-
-            s = parts.size();
-            ++index;
+        if (parts.size() >= 4 && parts[0] == userId) {
+            QStringList courses = parts.mid(3); // Extract courses starting from the 4th part
+            if (courses.size() < 5 && !courses.contains(courseName)) {
+                courses.append(courseName);
+                parts = parts.mid(0, 3) + courses; // Combine user info with updated courses
+                enrolled = true;
             }
         }
 
-        else {
-            qDebug() << "Skipping invalid line: " << line;
-        }
+        content += parts.join(':') + '\n';
     }
-    // writing
-    QFile file("user_data.txt");
-    if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
-        qDebug() << "Could not open file for reading/writing";
+
+    file.close();
+
+    if (enrolled) {
+        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            QTextStream out(&file);
+            out << content;
+            file.close();
+            QMessageBox::information(this, "Success", "Course enrolled successfully.");
+        } else {
+            QMessageBox::warning(this, "Error", "Unable to open file for writing.");
+        }
+    } else {
+        QMessageBox::warning(this, "Error", "Unable to enroll in the course.");
+    }
+}
+
+void student::drop_course(const QString &courseName)
+{
+    qDebug() << "Dropping course:" << courseName;
+
+    QString fname = "C:\\Users\\Eyad\\OneDrive\\Documents\\stmmmmm\\Users.txt";
+    QFile file(fname);
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, "Error", "Unable to open file.");
         return;
     }
 
+    QTextStream stream(&file);
     QString content;
+    QStringList parts;
+    QString userId = this->getUserId();
+    bool dropped = false;
+
+    while (!stream.atEnd()) {
+        QString line = stream.readLine();
+        parts = line.split(':');
+
+        if (parts.size() >= 4 && parts[0] == userId) {
+            QStringList courses = parts.mid(3); // Extract courses starting from the 4th part
+            if (courses.contains(courseName)) {
+                courses.removeAll(courseName);
+                parts = parts.mid(0, 3) + courses; // Combine user info with updated courses
+                dropped = true;
+            }
+        }
+
+        content += parts.join(':') + '\n';
+    }
+
+    file.close();
+
+    if (dropped) {
+        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            QTextStream out(&file);
+            out << content;
+            file.close();
+            QMessageBox::information(this, "Success", "Course dropped successfully.");
+        } else {
+            QMessageBox::warning(this, "Error", "Unable to open file for writing.");
+        }
+    } else {
+        QMessageBox::warning(this, "Error", "Unable to drop the course.");
+    }
+}
+
+void student::view_grade(const QString &courseName)
+{
+    qDebug() << "Viewing grade for course:" << courseName;
+    // Implement the logic to view grade for the given course
+}
+
+QStringList student::readCourseNames(const QString &fileName)
+{
+    QStringList courseList;
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "Could not open file for reading";
+        return courseList;
+    }
+
     QTextStream in(&file);
     while (!in.atEnd()) {
         QString line = in.readLine();
-        QStringList parts = line.split(':');
-        if (parts.size() >= 3 && parts[0] == user.userIdf) {
-            line = users.userIdf + ":" + users.passwordf + ":" + users.typef + ":" + users.enrolledcourses.join(",");
-        }
-        content += line + "\n";
+        courseList.append(line.trimmed());
     }
     file.close();
-
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        qDebug() << "Could not open file for writing";
-        return;
-    }
-
-    QTextStream out(&file);
-    out << content;
-    file.close();
-    }
-
-}
-
-void MainWindow::drop_course(const QString &courseName) {
-    // Implement your drop course logic here
-    qDebug() << "Dropping course:" << courseName;
-}
-
-void MainWindow::view_grade(const QString &courseName) {
-    // Implement your view grade logic here
-    qDebug() << "Viewing grade for course:" << courseName;
+    return courseList;
 }

@@ -8,7 +8,7 @@
 #include <string>
 #include <QString>
 #include <QDebug>
-#include<signup2.h>
+#include <signup2.h>
 #include <QDir>
 #include <user.h>
 #include <QTextStream>
@@ -23,6 +23,10 @@
 #include <QFile>
 #include <QIODevice>
 #include <QTextStream>
+#include <adminstrator.h>
+#include <student.h>
+#include <instructor.h>
+
 using namespace std;
 
 QT_BEGIN_NAMESPACE
@@ -40,15 +44,10 @@ public:
     ~MainWindow();
     
 private slots:
-    void on_pushButton_clicked();
     
     void on_Signup_clicked();
 
     void on_Login_clicked();
-
-    void on_Login_clicked(bool checked);
-
-    void on_groupBox_clicked();
 
 private:
     Ui::MainWindow *ui;

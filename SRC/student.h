@@ -1,22 +1,32 @@
 #ifndef STUDENT_H
 #define STUDENT_H
+#include "user.h"
 
 #include <QDialog>
 #include <QStringList>
+#include <QFile>
+#include <QTextStream>
+#include <QStringList>
+#include <QDebug>
+#include "user.h"
+#include "QMessageBox"
+
+
 
 namespace Ui {
 class student;
 }
 
-class student : public QDialog
+class student : public QDialog, public user
 {
     Q_OBJECT
     
 public:
     explicit student(QWidget *parent = nullptr);
+    student(QString id, QString pass);
 
     ~student();
-    void SetenrolledCourses(string e[]){}
+    void setEnrolledCourses(const QString e[]);
     
 private slots:
     void on_Next_clicked();

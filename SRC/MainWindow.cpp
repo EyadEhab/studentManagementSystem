@@ -31,56 +31,60 @@ void MainWindow::on_Login_clicked()
     int lineCount = 0;
     while (!stream.atEnd()) {
         QString line = stream.readLine();
-
-            ++lineCount;
-
+        ++lineCount;
     }
 
     // Reset the file stream to the beginning of the file
     file.seek(0);
-    int index = 0;
-    QString line = stream.readLine();
-    QStringList parts = line.split(':');
-    while (!stream.atEnd() && index < lineCount) {
-    QString typef ="";
-    typef = parts[2];
-    ++index;
-    }
-    file.seek(0);
-    if(typef=="instractor") {
-        instructor** users = new instructor*[lineCount];
-        for (int i = 0; i < lineCount; i++) {
-            users[i] = new user;
-        }
-    }
-    if(typef=="adminstrator") {
-        adminstrator** users = new adminstrator*[lineCount];
-        for (int i = 0; i < lineCount; i++) {
-            users[i] = new user;
-        }
-    }
-    if(typef=="student") {
-        student** users = new student*[lineCount];
-        for (int i = 0; i < lineCount; i++) {
-            users[i] = new user;
+
+    QStringList parts;
+    QString typef;
+    while (!stream.atEnd()) {
+        QString line = stream.readLine();
+        parts = line.split(':');
+        if (parts.size() >= 4) {
+            typef = parts[3];
+            break;
         }
     }
 
-    // Allocate dynamic array to hold the User structs
+    // Determine the type and allocate users array accordingly
+    User** users = nullptr;
+    if (typef == "instructor") {
+        users = new Instructor*[lineCount];
+    } else if (typef == "administrator") {
+        users = new Administrator*[lineCount];
+    } else if (typef == "student") {
+        users = new Student*[lineCount];
+    } else {
+        QMessageBox::warning(this, "Error", "Unknown user type.");
+        return;
+    }
 
+    for (int i = 0; i < lineCount; i++) {
+        if (typef == "instructor") {
+            users[i] = new Instructor;
+        } else if (typef == "administrator") {
+            users[i] = new Administrator;
+        } else if (typef == "student") {
+            users[i] = new Student;
+        }
+    }
 
     // Second pass: read the lines into the array
+    file.seek(0);
     int index = 0;
     while (!stream.atEnd() && index < lineCount) {
-
-
-
-        if(parts.size()>=3){
+        QString line = stream.readLine();
+        parts = line.split(':');
+        if (parts.size() >= 4) {
             users[index]->setUserId(parts[0]);
             users[index]->setPassword(parts[1]);
-            // Assuming parts[3] is not needed for the login check
+            users[index]->setUserName(parts[2]);
+            // Assuming parts[3] is the type and already used
             ++index;
-        }
+        } else {
+            qDebug() << "Skipping invalid line: " << line;
         }
     }
 
@@ -90,7 +94,7 @@ void MainWindow::on_Login_clicked()
     QString password = ui->Password->text();
     bool login = false;
 
-    // Example usage: display the parsed user data in the console
+    // Check login credentials
     for (int i = 0; i < lineCount; ++i) {
         if (userId == users[i]->getUserId() && password == users[i]->getPassword()) {
             login = true;
@@ -98,16 +102,17 @@ void MainWindow::on_Login_clicked()
         }
     }
 
-    // Remember to delete the dynamic array when done
+    // Clean up dynamic memory
     for (int i = 0; i < lineCount; i++) {
         delete users[i];
     }
     delete[] users;
 
-    if (login)
+    if (login) {
         QMessageBox::information(this, "Login Successful", "Login successful.");
-    else
+    } else {
         QMessageBox::information(this, "Error", "Cannot find your account, please sign up first.");
+    }
 }
 
 void MainWindow::on_Signup_clicked()

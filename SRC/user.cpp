@@ -5,12 +5,15 @@
 
 
 
-user::user(const QString& id , const QString& name , const QString& pass):userId(id),password(pass){
+user::user(const QString& id , const QString& pass):userId(id),password(pass){
 
 }
 
 QString user::getUserId() {
     return userId;}
+
+
+
 
 
 
