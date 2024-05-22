@@ -12,13 +12,17 @@ instructor::~instructor()
 {
     delete ui;
 }
+instructor::instructor(QString id, QString pass): user(id , pass), ui(new Ui::instructor)
+{
+    ui->setupUi(this);
+}
 
 void instructor::on_addCourse_clicked()
 {
     course obj(arr[max_course])(QString instructorId,QString instructorname,QString instructorID);
 
- QString subject = ui->addCourse_2->currentText();
- QString courses=ui->addCourse_3->currentText();
+ QString subject = ui->addCourse_2->text();
+ QString courses=ui->addCourse_3->text();
 
   int size = courses.size();
 
@@ -52,61 +56,83 @@ void instructor::on_removeCourse_clicked()
 }
 
 
-
-
-void instructor::on_addMaterial_clicked()
-{
-    Material obj(arr[max_material])(QString MaterialName,QString content);
-    QString subject=ui->addMaterial_2>text();
-    QString courses=ui->addMaterial_3>text();
-
-}
-
-
-void instructor::on_removeMaterial_clicked()
-{
-    QString MaterialName=ui->removeMaterial_2->text();
-
-    int size[Materials];
-    for( int i=0 ; i<size;i++)
-        if (mateial[i]==MaterialName)
-            QString arr[new_materials]=Material.slice(0,i).concat(Material.slice(i+1));
-}
 void instructor::on_updateGrade_clicked()
 {
     bool ok;
     int grade=ui->line1->text().toInt(&ok);
 }
 void instructor::on_getmaxgrade_clicked()
-{
-    max=0;
-    int grade=ui->line2->text().toInt(&ok);
-    for (int i=0;i<5;i++){
-        if(max>grade[i]){
-            max=grade[i];
-        }
-    }
-    qDebug<<max<<'\n';
-}
-void instructor::on_getmingrade_clicked()
-{
-    int grade=ui->line3->text().toInt(&ok);
-    min=max;
-    for (int i=0;i<5;i++){
-        if(min<grade[i]){
-            min=grade[i];
-        }
-    }
-    qDebug<<min<<endl;
-}
-void instructor::on_getAverageGrade_clicked()
-{
-    average=0;
-    int grade=ui->line4->text().toInt(&ok);
-    for (int i=0;i<5;i++){
-        average+=grade[i];
-    }
-    average/=5;
 
-    qDebug<<average<<endl;
+{
+    int max = INT_MIN; // Initialize max with the smallest possible integer value
+    bool ok;
+    QList<int> grades; // Dynamic list to store grades
+
+    QList<QLineEdit*> lineEdits = findChildren<QLineEdit*>(); // Find all QLineEdit children
+
+    // Retrieve grades from the UI
+    for (QLineEdit* lineEdit : lineEdits) {
+        int grade = lineEdit->text().toInt(&ok);
+        if (ok) {
+            grades.append(grade);
+        }
+    }
+
+    if (grades.isEmpty()) {
+        qDebug() << "No valid grades found.";
+        return;
+    }
+
+    // Find the maximum grade
+    for (int grade : grades) {
+        if (grade > max) {
+            max = grade;
+        }
+    }
+
+    qDebug() << max << '\n';
 }
+
+
+
+
+void instructor::on_getAverageGrade_clicked() {
+    // Retrieve and filter non-empty grades from the UI
+    QList<QString> grades;
+    QList<QLineEdit*> lineEdits = findChildren<QLineEdit*>(); // Find all QLineEdit children
+
+    for (QLineEdit* lineEdit : lineEdits) {
+        QString text = lineEdit->text();
+        if (!text.isEmpty()) {
+            grades.append(text);
+        }
+    }
+
+    double total_grade = 0.0;
+    int num_grades = grades.size();
+
+    if (num_grades == 0) {
+        qDebug() << "Error: No grades found to calculate average.";
+        return;
+    }
+
+    // Calculate the total grade and validate each entry
+    bool ok;
+    for (const auto& current_grade_item : grades) {
+        int current_grade = current_grade_item.toInt(&ok);
+        if (!ok) {
+            // Handle invalid grade found in the list
+            qDebug() << "Error: Invalid grade found in the list.";
+            return;
+        }
+
+        total_grade += static_cast<double>(current_grade);
+    }
+
+    // Calculate and display the average grade
+    double average = total_grade / num_grades;
+    qDebug() << "Average grade:" << average << '\n';
+}
+
+
+

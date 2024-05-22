@@ -17,7 +17,7 @@ class instructor : public QDialog, public user
 
 public:
     explicit instructor(QWidget *parent = nullptr);
-    instructor();
+    instructor(QString , QString);
 
     ~instructor();
 
