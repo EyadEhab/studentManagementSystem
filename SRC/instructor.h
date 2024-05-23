@@ -4,6 +4,14 @@
 #include "Course.h"
 
 #include <QDialog>
+#include <QStringList>
+#include <QFile>
+#include <QTextStream>
+#include <QStringList>
+#include <QDebug>
+#include "user.h"
+#include "QMessageBox"
+
 using namespace std;
 
 
@@ -23,20 +31,10 @@ public:
 
 private slots:
     void on_addCourse_clicked();
-
-    void on_addMaterial_clicked();
-
     void on_removeCourse_clicked();
-
-    void on_removeMaterial_clicked();
-
-    void on_getmaxgrade_clicked();
-
-    void on_getmingrade_clicked();
-
     void on_updateGrade_clicked();
+    addCourse(const QString& );
 
-    void on_getAverageGrade_clicked();
 
 private:
     Course* taughtCourses[10];

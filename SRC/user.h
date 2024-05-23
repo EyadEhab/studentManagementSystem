@@ -1,11 +1,7 @@
 #ifndef USER_H
 #define USER_H
 
-#include <QMainWindow>
-#include <QObject>
-#include <QQuickItem>
-#include <QSharedDataPointer>
-#include <QWidget>
+
 
 class userData;
 

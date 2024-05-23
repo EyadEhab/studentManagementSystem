@@ -1,2 +1,2 @@
-eyad:eyad:eyad:student
-eyad:eyad:eyad:adminstrator
+eyad:eyad:student
+

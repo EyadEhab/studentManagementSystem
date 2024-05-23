@@ -13,7 +13,7 @@ student::~student()
     delete ui;
 }
 
-student::student(QString id, QString pass): user(id , pass), ui(new Ui::student)
+student::student(QString id, QString pass): user(id , pass), ui(new Ui::student) , QDialog(nullptr)
 {
     ui->setupUi(this);
 }
@@ -25,7 +25,7 @@ void student::setEnrolledCourses(const QString e[])
     }
 }
 
-void student::on_Next_clicked()
+void student::on_next_clicked()
 {
     qDebug() << "Next";
     QString option = "";
@@ -179,3 +179,6 @@ QStringList student::readCourseNames(const QString &fileName)
     file.close();
     return courseList;
 }
+
+
+

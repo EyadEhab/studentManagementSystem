@@ -31,7 +31,7 @@ void Signup2::on_signUp_4_clicked()
             kind="student";
         }
         if(ui->instractur_4->isChecked()){
-            kind="instractor";
+            kind="instructor";
         }
         stream << userId;
         stream << ":";

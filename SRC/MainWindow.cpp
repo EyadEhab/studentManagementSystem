@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
+
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent)
@@ -18,6 +19,8 @@ MainWindow::~MainWindow()
 void MainWindow::on_Login_clicked()
 {
     QString fname = "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\Users.txt";
+    QString userId = ui->userId->text();
+    QString password = ui->Password->text();
     QFile file(fname);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -26,93 +29,59 @@ void MainWindow::on_Login_clicked()
     }
 
     QTextStream stream(&file);
-
-    // First pass: count the number of valid lines
-    int lineCount = 0;
-    while (!stream.atEnd()) {
-        QString line = stream.readLine();
-        ++lineCount;
-    }
-
-    // Reset the file stream to the beginning of the file
-    file.seek(0);
-
     QStringList parts;
     QString typef;
+    bool loginSuccessful = false;
+
     while (!stream.atEnd()) {
         QString line = stream.readLine();
         parts = line.split(':');
-        if (parts.size() >= 4) {
-            typef = parts[3];
+        if (parts.size() >= 3 && parts[0] == userId && parts[1] == password) {
+            typef = parts[2];
+            loginSuccessful = true;
             break;
-        }
-    }
-
-    // Determine the type and allocate users array accordingly
-    User** users = nullptr;
-    if (typef == "instructor") {
-        users = new Instructor*[lineCount];
-    } else if (typef == "administrator") {
-        users = new Administrator*[lineCount];
-    } else if (typef == "student") {
-        users = new Student*[lineCount];
-    } else {
-        QMessageBox::warning(this, "Error", "Unknown user type.");
-        return;
-    }
-
-    for (int i = 0; i < lineCount; i++) {
-        if (typef == "instructor") {
-            users[i] = new Instructor;
-        } else if (typef == "administrator") {
-            users[i] = new Administrator;
-        } else if (typef == "student") {
-            users[i] = new Student;
-        }
-    }
-
-    // Second pass: read the lines into the array
-    file.seek(0);
-    int index = 0;
-    while (!stream.atEnd() && index < lineCount) {
-        QString line = stream.readLine();
-        parts = line.split(':');
-        if (parts.size() >= 4) {
-            users[index]->setUserId(parts[0]);
-            users[index]->setPassword(parts[1]);
-            users[index]->setUserName(parts[2]);
-            // Assuming parts[3] is the type and already used
-            ++index;
-        } else {
-            qDebug() << "Skipping invalid line: " << line;
         }
     }
 
     file.close();
 
-    QString userId = ui->userId->text();
-    QString password = ui->Password->text();
-    bool login = false;
-
-    // Check login credentials
-    for (int i = 0; i < lineCount; ++i) {
-        if (userId == users[i]->getUserId() && password == users[i]->getPassword()) {
-            login = true;
-            break;
-        }
+    if (!loginSuccessful) {
+        QMessageBox::information(this, "Error", "Invalid username or password.");
+        return;
     }
 
-    // Clean up dynamic memory
-    for (int i = 0; i < lineCount; i++) {
-        delete users[i];
-    }
-    delete[] users;
+    user* users = nullptr;
 
-    if (login) {
-        QMessageBox::information(this, "Login Successful", "Login successful.");
+    if (typef == "instructor") {
+        users = new instructor(userId, password);
+    } else if (typef == "administrator") {
+        users = new adminstrator(userId, password);
+    } else if (typef == "student") {
+        users = new student(userId, password);
     } else {
-        QMessageBox::information(this, "Error", "Cannot find your account, please sign up first.");
+        QMessageBox::warning(this, "Error", "Unknown user type.");
+        return;
     }
+
+    QMessageBox::information(this, "Login Successful", "Login successful.");
+    qDebug() << "logged in";
+
+    if (typeid(*users) == typeid(instructor)) {
+        instructor* instructorDialog = static_cast<instructor*>(users);
+        instructorDialog->setModal(true);
+        instructorDialog->exec();
+    } else if (typeid(*users) == typeid(adminstrator)) {
+        adminstrator* adminstratorDialog = static_cast<adminstrator*>(users);
+        adminstratorDialog->setModal(true);
+        adminstratorDialog->exec();
+    } else if (typeid(*users) == typeid(student)) {
+        qDebug() << "Course";
+        student* studentDialog = static_cast<student*>(users);
+        studentDialog->setModal(true);
+        studentDialog->exec();
+    }
+
+    delete users;
 }
 
 void MainWindow::on_Signup_clicked()

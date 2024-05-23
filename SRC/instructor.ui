@@ -57,13 +57,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </rect>
    </property>
    <property name="text">
-    <string>Add Course , Credit hour</string>
+    <string>Add Course</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="addCourse_2">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>140</x>
      <y>190</y>
      <width>141</width>
      <height>31</height>
@@ -96,37 +96,11 @@ li.checked::marker { content: &quot;\2612&quot;; }
     </rect>
    </property>
   </widget>
-  <widget class="QLineEdit" name="addCourse_3">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>190</y>
-     <width>151</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="getmingrade">
-   <property name="geometry">
-    <rect>
-     <x>600</x>
-     <y>370</y>
-     <width>241</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Minimum grade</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="updateGrade">
    <property name="geometry">
     <rect>
-     <x>600</x>
-     <y>100</y>
+     <x>320</x>
+     <y>370</y>
      <width>241</width>
      <height>41</height>
     </rect>
@@ -135,154 +109,14 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string>update grade</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit_5">
-   <property name="geometry">
-    <rect>
-     <x>650</x>
-     <y>440</y>
-     <width>161</width>
-     <height>26</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="line1">
-   <property name="geometry">
-    <rect>
-     <x>650</x>
-     <y>190</y>
-     <width>161</width>
-     <height>26</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="line2">
-   <property name="geometry">
-    <rect>
-     <x>650</x>
-     <y>550</y>
-     <width>161</width>
-     <height>26</height>
-    </rect>
-   </property>
-   <property name="cursor">
-    <cursorShape>ArrowCursor</cursorShape>
-   </property>
-   <property name="mouseTracking">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="getmaxgrade">
-   <property name="geometry">
-    <rect>
-     <x>600</x>
-     <y>250</y>
-     <width>241</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Maximum grade</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="line3">
-   <property name="geometry">
-    <rect>
-     <x>650</x>
-     <y>320</y>
-     <width>161</width>
-     <height>26</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="getAverageGrade">
-   <property name="geometry">
-    <rect>
-     <x>600</x>
-     <y>480</y>
-     <width>241</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Average grade</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>72</x>
-     <y>160</y>
-     <width>91</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Course name</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_3">
-   <property name="geometry">
-    <rect>
-     <x>270</x>
-     <y>160</y>
-     <width>81</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>credit hours</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLineEdit" name="studentid1">
    <property name="geometry">
     <rect>
      <x>170</x>
-     <y>280</y>
-     <width>101</width>
-     <height>20</height>
+     <y>470</y>
+     <width>161</width>
+     <height>26</height>
     </rect>
-   </property>
-   <property name="text">
-    <string>Course name</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_4">
-   <property name="geometry">
-    <rect>
-     <x>690</x>
-     <y>170</y>
-     <width>81</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>New.grade</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_5">
-   <property name="geometry">
-    <rect>
-     <x>690</x>
-     <y>300</y>
-     <width>91</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>MAX. Grade</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label_6">
-   <property name="geometry">
-    <rect>
-     <x>690</x>
-     <y>420</y>
-     <width>81</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Min.Grade</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_7">
@@ -298,17 +132,63 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="label_8">
+  <widget class="QLineEdit" name="courseName1">
    <property name="geometry">
     <rect>
-     <x>690</x>
-     <y>530</y>
+     <x>340</x>
+     <y>470</y>
+     <width>161</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="grade1">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>470</y>
+     <width>161</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>430</y>
      <width>81</width>
-     <height>20</height>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>Avg.Grade</string>
+    <string>student Id</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>430</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>course name</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>430</y>
+     <width>81</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>grade</string>
    </property>
   </widget>
  </widget>

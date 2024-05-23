@@ -10,28 +10,27 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    course.cpp \
+    adminstrator.cpp \
     main.cpp \
     mainwindow.cpp \
     signup2.cpp \
     user.cpp \
-    adminstrator.cpp \
     instructor.cpp \
     student.cpp
 
 HEADERS += \
+    adminstrator.h \
     course.h \
     mainwindow.h \
     signup2.h \
     user.h \
-    adminstrator.h \
     instructor.h \
     student.h
 
 FORMS += \
+    adminstrator.ui \
     mainwindow.ui \
     signup2.ui \
-    adminstrator.ui \
     instructor.ui \
     student.ui
 
@@ -41,4 +40,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
-    Users.txt
+    Grades \
+    Users.txt \
+    courses.txt

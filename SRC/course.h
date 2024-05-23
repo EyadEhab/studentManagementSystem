@@ -2,25 +2,17 @@
 #define COURSE_H
 
 #include <QString>
-#include <QDebug>
-#include <utility>
-#include <string>
-#include "student.h"
 
-const int MAX_STUDENTS = 100;
-
-class Course
-{
+class Course {
 public:
-    Course(const QString& name = "") : courseName(name) {}
+    Course(const QString& courseName) : name(courseName) {}
 
-    void addStudent(student* student);
-    void removeStudent(student* student);
-    void updateGrade(student* student, float grade);
+    QString getName() const {
+        return name;
+    }
 
 private:
-    QString courseName;
-    std::pair<QString, float> studentGrades[MAX_STUDENTS];
+    QString name;
 };
 
 #endif // COURSE_H
