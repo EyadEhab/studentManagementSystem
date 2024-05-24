@@ -22,9 +22,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Login_clicked()
 {
+<<<<<<< HEAD
     QString fname = "D:\\STUDENTproject\\studentManagementSystem\\SRC\\Users.txt";
+=======
+
+>>>>>>> d5005b7b1d417f11057d57d86f531ec5f2dd0f94
     QString userId = ui->userId->text();
     QString password = ui->Password->text();
+    QString fname = "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\Users.txt";
     QFile file(fname);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {

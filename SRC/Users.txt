@@ -1,5 +1,6 @@
 eyad:eyad:student
 eyad1123:eyad:instructor
+<<<<<<< HEAD
 eyad123:eyad:adminstrator
 yassin12:yass222:adminstrator
 yss11:k22:student
@@ -12,3 +13,7 @@ gg:hh:student
 gg:hh:student
 aa:zz:adminstrator
 lo:al:student
+=======
+eyad:eyad:student
+eyad1123:eyad:instructor
+>>>>>>> d5005b7b1d417f11057d57d86f531ec5f2dd0f94

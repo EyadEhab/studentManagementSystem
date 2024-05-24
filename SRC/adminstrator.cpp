@@ -1,5 +1,7 @@
 #include "adminstrator.h"
 #include "ui_adminstrator.h"
+#include "adduser.h"
+
 
 adminstrator::adminstrator(QWidget *parent) :
     QDialog(parent),
@@ -115,3 +117,90 @@ void adminstrator::loadCoursesFromFile()
     file.close();
     qDebug() << "Courses loaded from file:" << "D:\\STUDENTproject\\studentManagementSystem\\SRC\\courses.txt";
 }
+
+void adminstrator::on_pushButton_clicked()
+{
+    adduser adduser;
+    adduser.setModal(true);
+    adduser.exec();
+}
+
+
+void adminstrator::on_removeUser_clicked()
+{
+    QString removeuser = ui->removeuser1->text();
+    QString fname = "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\Users.txt";
+    QFile file(fname);
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, "Error", "Unable to open file.");
+        return;
+    }
+
+    QTextStream stream(&file);
+    QStringList parts;
+    QString typef;
+    bool account = false;
+
+    while (!stream.atEnd()) {
+        QString line = stream.readLine();
+        parts = line.split(':');
+        if (parts.size() >= 3 && parts[0] == removeuser) {
+            typef = parts[2];
+            account = true;
+            break;
+        }
+    }
+
+    file.close();
+
+    if (!account) {
+        QMessageBox::information(this, "Error", "Invalid username or password.");
+        return;
+    }
+    // write file new users
+
+
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, "Error", "Unable to open file.");
+        return;
+    }
+
+
+    QString content;
+
+
+    bool enrolled = false;
+
+    while (!stream.atEnd()) {
+        QString line = stream.readLine();
+        parts = line.split(':');
+
+        if (parts.size() >= 3 && parts[0] == removeuser) {
+            content += "";
+            enrolled = true;
+
+        }else content += parts.join(':') + '\n';
+
+
+    }
+
+    file.close();
+
+    if (enrolled) {
+        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            QTextStream out(&file);
+            out << content;
+            file.close();
+            QMessageBox::information(this, "Success", "User Removed successfully.");
+        } else {
+            QMessageBox::warning(this, "Error", "Unable to open file for writing.");
+        }
+    } else {
+        QMessageBox::warning(this, "Error", "Unable to enroll in the course.");
+    }
+}
+
+
+

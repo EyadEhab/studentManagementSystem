@@ -57,6 +57,7 @@ void student::on_next_clicked()
     // Constructor implementation
 }
 
+<<<<<<< HEAD
 QString student::getUserId() {
     return m_userId;
 }
@@ -64,6 +65,10 @@ QString student::getUserId() {
 bool student::course_exists(const QString &courseName) {
     QString courseFile = "D:\\STUDENTproject\\studentManagementSystem\\SRC\\Courses.txt";
     QFile file(courseFile);
+=======
+    QString fname = "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\courses.txt";
+    QFile file(fname);
+>>>>>>> d5005b7b1d417f11057d57d86f531ec5f2dd0f94
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QMessageBox::warning(nullptr, "Error", "Unable to open course file.");
@@ -141,7 +146,11 @@ void student::drop_course(const QString &courseName)
 {
     qDebug() << "Dropping course:" << courseName;
 
+<<<<<<< HEAD
     QString fname = "D:\\STUDENTproject\\studentManagementSystem\\SRC\\Users.txt";
+=======
+    QString fname = "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\courses.txt";
+>>>>>>> d5005b7b1d417f11057d57d86f531ec5f2dd0f94
     QFile file(fname);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {

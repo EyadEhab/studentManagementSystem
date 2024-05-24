@@ -1,3 +1,4 @@
+debug/adduser.o
 debug/adminstrator.o
 debug/main.o
 debug/mainwindow.o
@@ -5,6 +6,7 @@ debug/signup2.o
 debug/user.o
 debug/instructor.o
 debug/student.o
+debug/moc_adduser.o
 debug/moc_adminstrator.o
 debug/moc_mainwindow.o
 debug/moc_signup2.o

@@ -57,7 +57,7 @@
      <string>add user</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="removeUser">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -96,7 +96,7 @@
      <string>remove course</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_3">
+   <widget class="QLineEdit" name="removeuser1">
     <property name="geometry">
      <rect>
       <x>70</x>

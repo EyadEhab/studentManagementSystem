@@ -40,7 +40,6 @@ constexpr auto qt_meta_stringdata_CLASSstudentENDCLASS = QtMocHelpers::stringDat
     "on_next_clicked",
     "",
     "readCourseNames",
-    "fileName",
     "enroll_course",
     "courseName",
     "drop_course",
@@ -66,17 +65,17 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSstudentENDCLASS[] = {
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
        1,    0,   44,    2, 0x08,    1 /* Private */,
-       3,    1,   45,    2, 0x08,    2 /* Private */,
-       5,    1,   48,    2, 0x08,    4 /* Private */,
-       7,    1,   51,    2, 0x08,    6 /* Private */,
-       8,    1,   54,    2, 0x08,    8 /* Private */,
+       3,    0,   45,    2, 0x08,    2 /* Private */,
+       4,    1,   46,    2, 0x08,    3 /* Private */,
+       6,    1,   49,    2, 0x08,    5 /* Private */,
+       7,    1,   52,    2, 0x08,    7 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::QStringList, QMetaType::QString,    4,
-    QMetaType::Void, QMetaType::QString,    6,
-    QMetaType::Void, QMetaType::QString,    6,
-    QMetaType::Void, QMetaType::QString,    6,
+    QMetaType::QStringList,
+    QMetaType::Void, QMetaType::QString,    5,
+    QMetaType::Void, QMetaType::QString,    5,
+    QMetaType::Void, QMetaType::QString,    5,
 
        0        // eod
 };
@@ -94,7 +93,6 @@ Q_CONSTINIT const QMetaObject student::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'readCourseNames'
         QtPrivate::TypeAndForceComplete<QStringList, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'enroll_course'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
@@ -115,7 +113,7 @@ void student::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         (void)_t;
         switch (_id) {
         case 0: _t->on_next_clicked(); break;
-        case 1: { QStringList _r = _t->readCourseNames((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])));
+        case 1: { QStringList _r = _t->readCourseNames();
             if (_a[0]) *reinterpret_cast< QStringList*>(_a[0]) = std::move(_r); }  break;
         case 2: _t->enroll_course((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 3: _t->drop_course((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;

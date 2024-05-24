@@ -25,10 +25,10 @@ public:
     QGroupBox *groupBox;
     QLabel *label;
     QPushButton *pushButton;
-    QPushButton *pushButton_2;
+    QPushButton *removeUser;
     QPushButton *addCourse;
     QPushButton *removeCourse;
-    QLineEdit *lineEdit_3;
+    QLineEdit *removeuser1;
     QLineEdit *addCourse1;
     QLineEdit *removeCourse1;
 
@@ -50,18 +50,18 @@ public:
         pushButton = new QPushButton(groupBox);
         pushButton->setObjectName("pushButton");
         pushButton->setGeometry(QRect(90, 190, 83, 29));
-        pushButton_2 = new QPushButton(groupBox);
-        pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(90, 280, 83, 29));
+        removeUser = new QPushButton(groupBox);
+        removeUser->setObjectName("removeUser");
+        removeUser->setGeometry(QRect(90, 280, 83, 29));
         addCourse = new QPushButton(groupBox);
         addCourse->setObjectName("addCourse");
         addCourse->setGeometry(QRect(650, 180, 83, 29));
         removeCourse = new QPushButton(groupBox);
         removeCourse->setObjectName("removeCourse");
         removeCourse->setGeometry(QRect(620, 280, 111, 29));
-        lineEdit_3 = new QLineEdit(groupBox);
-        lineEdit_3->setObjectName("lineEdit_3");
-        lineEdit_3->setGeometry(QRect(70, 320, 121, 28));
+        removeuser1 = new QLineEdit(groupBox);
+        removeuser1->setObjectName("removeuser1");
+        removeuser1->setGeometry(QRect(70, 320, 121, 28));
         addCourse1 = new QLineEdit(groupBox);
         addCourse1->setObjectName("addCourse1");
         addCourse1->setGeometry(QRect(592, 230, 131, 28));
@@ -80,7 +80,7 @@ public:
         groupBox->setTitle(QCoreApplication::translate("adminstrator", "GroupBox", nullptr));
         label->setText(QCoreApplication::translate("adminstrator", "Adminstrator", nullptr));
         pushButton->setText(QCoreApplication::translate("adminstrator", "add user", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("adminstrator", "remove user", nullptr));
+        removeUser->setText(QCoreApplication::translate("adminstrator", "remove user", nullptr));
         addCourse->setText(QCoreApplication::translate("adminstrator", "add course", nullptr));
         removeCourse->setText(QCoreApplication::translate("adminstrator", "remove course", nullptr));
     } // retranslateUi
