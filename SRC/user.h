@@ -1,6 +1,30 @@
 #ifndef USER_H
 #define USER_H
+#include <QMainWindow>
+#include <iostream>
+#include <fstream>
+#include <cstdio>
+#include <string>
+#include <QString>
+#include <QDebug>
+#include <QDir>
+#include <QTextStream>
 
+#include <QDialog>
+#include <QSpinBox>
+#include <QTextEdit>
+#include <QComboBox>
+#include <QPushButton>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
+#include <QFile>
+#include <QIODevice>
+
+#include <typeinfo>
+
+#include "QMessageBox"
+
+#include <QScopedPointer>
 
 
 class userData;

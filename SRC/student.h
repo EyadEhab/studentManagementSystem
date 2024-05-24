@@ -2,7 +2,7 @@
 #include "./ui_mainwindow.h"
 #include "instructor.h"
 #include "adminstrator.h"
-#include "student.h"
+
 #include <QMessageBox>
 #include <QFile>
 #include <QTextStream>
