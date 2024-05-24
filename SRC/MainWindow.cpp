@@ -1,8 +1,12 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-
-
-using namespace std;
+#include "instructor.h"
+#include "adminstrator.h"
+#include "student.h"
+#include <QMessageBox>
+#include <QFile>
+#include <QTextStream>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -54,7 +58,7 @@ void MainWindow::on_Login_clicked()
 
     if (typef == "instructor") {
         users = new instructor(userId, password);
-    } else if (typef == "administrator") {
+    } else if (typef == "adminstrator") {
         users = new adminstrator(userId, password);
     } else if (typef == "student") {
         users = new student(userId, password);

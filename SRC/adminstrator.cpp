@@ -6,8 +6,12 @@ adminstrator::adminstrator(QWidget *parent) :
     ui(new Ui::adminstrator)
 {
     ui->setupUi(this);
-    fname = "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\courses.txt";
-    loadCoursesFromFile(fname);
+}
+
+adminstrator::adminstrator(QString id, QString pass) : user(id, pass), ui(new Ui::adminstrator)
+{
+    ui->setupUi(this);
+    loadCoursesFromFile();
 }
 
 adminstrator::~adminstrator()
@@ -19,17 +23,16 @@ void adminstrator::on_addCourse_clicked()
 {
     QString course = ui->addCourse1->text();
     addCourse(course);
-    saveCoursesToFile(fname);
 }
 
 void adminstrator::on_removeCourse_clicked()
 {
     QString course = ui->removeCourse1->text();
     removeCourse(course);
-    saveCoursesToFile(fname);
 }
 
-void adminstrator::addCourse(const QString& courseName) {
+void adminstrator::addCourse(const QString& courseName)
+{
     for (const auto& course : courses) {
         if (course.getName() == courseName) {
             qWarning() << "Course already exists!";
@@ -38,20 +41,24 @@ void adminstrator::addCourse(const QString& courseName) {
     }
     courses.append(Course(courseName));
     qDebug() << "Course" << courseName << "added successfully.";
+    saveCoursesToFile();
 }
 
-void adminstrator::removeCourse(const QString& courseName) {
+void adminstrator::removeCourse(const QString& courseName)
+{
     for (int i = 0; i < courses.size(); ++i) {
         if (courses[i].getName() == courseName) {
             courses.removeAt(i);
             qDebug() << "Course" << courseName << "removed successfully.";
+            saveCoursesToFile();
             return;
         }
     }
     qWarning() << "Course not found!";
 }
 
-void adminstrator::listCourses() const {
+void adminstrator::listCourses() const
+{
     if (courses.isEmpty()) {
         qDebug() << "No courses available.";
         return;
@@ -63,10 +70,11 @@ void adminstrator::listCourses() const {
     }
 }
 
-void adminstrator::saveCoursesToFile(const QString& fileName) const {
-    QFile file(fileName);
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)) {
-        qWarning() << "Cannot open file for writing:" << file.errorString();
+void adminstrator::saveCoursesToFile()
+{
+    QFile file("D:\\studentManagementSystem\\studentManagementSystem\\SRC\\courses.txt");
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "Unable to open file for writing:" << file.errorString();
         return;
     }
 
@@ -76,13 +84,14 @@ void adminstrator::saveCoursesToFile(const QString& fileName) const {
     }
 
     file.close();
-    qDebug() << "Courses saved to file:" << fileName;
+    qDebug() << "Courses saved to file:" << "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\courses.txt";
 }
 
-void adminstrator::loadCoursesFromFile(const QString& fileName) {
-    QFile file(fileName);
+void adminstrator::loadCoursesFromFile()
+{
+    QFile file("D:\\studentManagementSystem\\studentManagementSystem\\SRC\\courses.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qWarning() << "Cannot open file for reading:" << file.errorString();
+        qWarning() << "Unable to open file for reading:" << file.errorString();
         return;
     }
 
@@ -104,5 +113,5 @@ void adminstrator::loadCoursesFromFile(const QString& fileName) {
     }
 
     file.close();
-    qDebug() << "Courses loaded from file:" << fileName;
+    qDebug() << "Courses loaded from file:" << "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\courses.txt";
 }

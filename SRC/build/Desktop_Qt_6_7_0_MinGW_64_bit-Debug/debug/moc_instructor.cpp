@@ -90,10 +90,10 @@ Q_CONSTINIT const QMetaObject instructor::staticMetaObject = { {
         // method 'on_removeCourse_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_updateGrade_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method ''
-        QtPrivate::TypeAndForceComplete<addCourse, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>
+
+
+
     >,
     nullptr
 } };
@@ -107,8 +107,6 @@ void instructor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 0: _t->on_addCourse_clicked(); break;
         case 1: _t->on_removeCourse_clicked(); break;
         case 2: _t->on_updateGrade_clicked(); break;
-        case 3: { addCourse _r = _t->((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])));
-            if (_a[0]) *reinterpret_cast< addCourse*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     }

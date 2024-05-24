@@ -9,7 +9,7 @@
 #include <QTextStream>
 #include <QStringList>
 #include <QDebug>
-#include "user.h"
+
 #include "QMessageBox"
 
 using namespace std;

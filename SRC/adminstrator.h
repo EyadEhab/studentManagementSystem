@@ -20,7 +20,7 @@ class adminstrator : public QDialog, public user
 
 public:
     explicit adminstrator(QWidget *parent = nullptr);
-    adminstrator(QString id,QString pass):user(id,pass){}
+    adminstrator(QString id,QString pass);
     ~adminstrator();
 
 private slots:
@@ -31,8 +31,8 @@ private:
     void addCourse(const QString& courseName);
     void removeCourse(const QString& courseName);
     void listCourses() const;
-    void saveCoursesToFile(const QString& fileName) const;
-    void loadCoursesFromFile(const QString& fileName);
+    void saveCoursesToFile() ;
+    void loadCoursesFromFile();
 
     Ui::adminstrator *ui;
     QList<Course> courses;

@@ -42,7 +42,7 @@ public:
     void setUserName(QString) ;
     void setPassword(QString) ;
 
-    ~user();
+    virtual ~user();
 
 
 private:

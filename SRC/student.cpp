@@ -1,9 +1,8 @@
 #include "student.h"
 #include "ui_student.h"
 
-student::student(QWidget *parent)
-    : QDialog(parent)
-    , ui(new Ui::student)
+student::student(const QString &userId, const QString &password, QWidget *parent)
+    : QDialog(parent), user(userId, password), ui(new Ui::student)
 {
     ui->setupUi(this);
 }
@@ -13,17 +12,15 @@ student::~student()
     delete ui;
 }
 
-student::student(QString id, QString pass): user(id , pass), ui(new Ui::student) , QDialog(nullptr)
-{
-    ui->setupUi(this);
-}
 
-void student::setEnrolledCourses(const QString e[])
+void student::setEnrolledCourses(const QStringList &courses)
 {
     for (int i = 0; i < 5; ++i) {
-        this->enrolledCourses[i] = e[i];
+        this->enrolledCourses[i] = courses[i];
     }
 }
+
+
 
 void student::on_next_clicked()
 {
@@ -39,7 +36,7 @@ void student::on_next_clicked()
     }
 
     QString courseName = ui->courseName->text().trimmed();
-    QStringList courseList = readCourseNames("courses.txt");
+    QStringList courseList = readCourseNames("D:\studentManagementSystem\studentManagementSystem\SRC\courses.txt");
 
     if (courseList.contains(courseName)) {
         qDebug() << "Course name exists";
@@ -162,10 +159,11 @@ void student::view_grade(const QString &courseName)
     // Implement the logic to view grade for the given course
 }
 
-QStringList student::readCourseNames(const QString &fileName)
+QStringList student::readCourseNames()
 {
     QStringList courseList;
-    QFile file(fileName);
+    QFile file("D:\\studentManagementSystem\\studentManagementSystem\\SRC\\courses.txt");
+
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Could not open file for reading";
         return courseList;

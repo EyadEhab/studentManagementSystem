@@ -1,2 +1,3 @@
 eyad:eyad:student
-11
+eyad1123:eyad:instructor
+eyad123:eyad:adminstrator

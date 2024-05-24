@@ -6,7 +6,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    qDebug() << "Button clicked";
+    qDebug() << "starting";
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
