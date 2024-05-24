@@ -1,3 +1,4 @@
+release/adduser.o
 release/adminstrator.o
 release/main.o
 release/mainwindow.o
@@ -5,6 +6,7 @@ release/signup2.o
 release/user.o
 release/instructor.o
 release/student.o
+release/moc_adduser.o
 release/moc_adminstrator.o
 release/moc_mainwindow.o
 release/moc_signup2.o

@@ -65,13 +65,13 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSinstructorENDCLASS[] = {
        1,    0,   38,    2, 0x08,    1 /* Private */,
        3,    0,   39,    2, 0x08,    2 /* Private */,
        4,    0,   40,    2, 0x08,    3 /* Private */,
-       2,    1,   41,    2, 0x08,    4 /* Private */,
+       5,    1,   41,    2, 0x08,    4 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    0x80000000 | 5, QMetaType::QString,    2,
+    QMetaType::Void, QMetaType::QString,    2,
 
        0        // eod
 };
@@ -90,10 +90,10 @@ Q_CONSTINIT const QMetaObject instructor::staticMetaObject = { {
         // method 'on_removeCourse_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_updateGrade_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
-
-
-
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'addCourse'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
     >,
     nullptr
 } };
@@ -107,6 +107,7 @@ void instructor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 0: _t->on_addCourse_clicked(); break;
         case 1: _t->on_removeCourse_clicked(); break;
         case 2: _t->on_updateGrade_clicked(); break;
+
         default: ;
         }
     }

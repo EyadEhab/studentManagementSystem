@@ -36,7 +36,7 @@ void student::on_next_clicked()
     }
 
     QString courseName = ui->courseName->text().trimmed();
-    QStringList courseList = readCourseNames("D:\studentManagementSystem\studentManagementSystem\SRC\courses.txt");
+    QStringList courseList = readCourseNames();
 
     if (courseList.contains(courseName)) {
         qDebug() << "Course name exists";
@@ -57,7 +57,7 @@ void student::enroll_course(const QString &courseName)
 {
     qDebug() << "Enrolling in course:" << courseName;
 
-    QString fname = "C:\\Users\\Eyad\\OneDrive\\Documents\\stmmmmm\\Users.txt";
+    QString fname = "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\courses.txt";
     QFile file(fname);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -107,7 +107,7 @@ void student::drop_course(const QString &courseName)
 {
     qDebug() << "Dropping course:" << courseName;
 
-    QString fname = "C:\\Users\\Eyad\\OneDrive\\Documents\\stmmmmm\\Users.txt";
+    QString fname = "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\courses.txt";
     QFile file(fname);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {

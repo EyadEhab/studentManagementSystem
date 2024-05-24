@@ -22,7 +22,7 @@ public:
 
 private slots:
     void on_next_clicked();
-    QStringList readCourseNames(const QString &fileName);
+    QStringList readCourseNames();
     void enroll_course(const QString &courseName);
     void drop_course(const QString &courseName);
     void view_grade(const QString &courseName);
