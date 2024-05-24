@@ -72,7 +72,7 @@ void adminstrator::listCourses() const
 
 void adminstrator::saveCoursesToFile()
 {
-    QFile file("D:\\studentManagementSystem\\studentManagementSystem\\SRC\\courses.txt");
+    QFile file("D:\\STUDENTproject\\studentManagementSystem\\SRC\\courses.txt");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qWarning() << "Unable to open file for writing:" << file.errorString();
         return;
@@ -84,12 +84,12 @@ void adminstrator::saveCoursesToFile()
     }
 
     file.close();
-    qDebug() << "Courses saved to file:" << "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\courses.txt";
+    qDebug() << "Courses saved to file:" << "D:\\STUDENTproject\\studentManagementSystem\\SRC\\courses.txt";
 }
 
 void adminstrator::loadCoursesFromFile()
 {
-    QFile file("D:\\studentManagementSystem\\studentManagementSystem\\SRC\\courses.txt");
+    QFile file("D:\\STUDENTproject\\studentManagementSystem\\SRC\\courses.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "Unable to open file for reading:" << file.errorString();
         return;
@@ -113,5 +113,5 @@ void adminstrator::loadCoursesFromFile()
     }
 
     file.close();
-    qDebug() << "Courses loaded from file:" << "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\courses.txt";
+    qDebug() << "Courses loaded from file:" << "D:\\STUDENTproject\\studentManagementSystem\\SRC\\courses.txt";
 }

@@ -15,7 +15,7 @@ Signup2::~Signup2()
 
 void Signup2::on_signUp_4_clicked()
 {
-    QString fname = "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\Users.txt";
+    QString fname = "D:\\STUDENTproject\\studentManagementSystem\\SRC\\Users.txt";
     QFile file(fname);
 
 

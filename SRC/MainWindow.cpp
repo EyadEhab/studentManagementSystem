@@ -22,7 +22,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Login_clicked()
 {
-    QString fname = "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\Users.txt";
+    QString fname = "D:\\STUDENTproject\\studentManagementSystem\\SRC\\Users.txt";
     QString userId = ui->userId->text();
     QString password = ui->Password->text();
     QFile file(fname);

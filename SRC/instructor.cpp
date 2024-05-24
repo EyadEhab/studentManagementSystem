@@ -21,7 +21,7 @@ void instructor::on_addCourse_clicked()
 {
     QString courseName = ui->addCourse_2->text();
     // Open the file in Append mode
-    QString fname = "C:\\Users\\Eyad\\OneDrive\\Documents\\stmmmmm\\Users.txt";
+    QString fname = "D:\\STUDENTproject\\studentManagementSystem\\SRC\\Users.txt";
     QFile file(fname);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -74,7 +74,7 @@ void instructor::on_removeCourse_clicked()
     QString courseName = ui->removeCourse_2->text();
     qDebug() << "removing course:" << courseName;
 
-    QString fname = "C:\\Users\\Eyad\\OneDrive\\Documents\\stmmmmm\\Users.txt";
+    QString fname = "D:\\STUDENTproject\\studentManagementSystem\\SRC\\Users.txt";
     QFile file(fname);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {

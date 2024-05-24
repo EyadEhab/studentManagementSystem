@@ -7,6 +7,7 @@
 *****************************************************************************/
 
 #include "../../../student.h"
+#include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>
@@ -36,14 +37,15 @@ namespace {
 struct qt_meta_stringdata_CLASSstudentENDCLASS_t {};
 constexpr auto qt_meta_stringdata_CLASSstudentENDCLASS = QtMocHelpers::stringData(
     "student",
-    "on_Next_clicked",
+    "on_next_clicked",
     "",
     "readCourseNames",
-    "fileName",
     "enroll_course",
     "courseName",
     "drop_course",
-    "view_grade"
+    "view_grade",
+    "course_exists",
+    "getUserId"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -56,7 +58,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSstudentENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       7,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -64,18 +66,22 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSstudentENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   44,    2, 0x08,    1 /* Private */,
-       3,    1,   45,    2, 0x08,    2 /* Private */,
-       5,    1,   48,    2, 0x08,    4 /* Private */,
-       7,    1,   51,    2, 0x08,    6 /* Private */,
-       8,    1,   54,    2, 0x08,    8 /* Private */,
+       1,    0,   56,    2, 0x08,    1 /* Private */,
+       3,    0,   57,    2, 0x08,    2 /* Private */,
+       4,    1,   58,    2, 0x08,    3 /* Private */,
+       6,    1,   61,    2, 0x08,    5 /* Private */,
+       7,    1,   64,    2, 0x08,    7 /* Private */,
+       8,    1,   67,    2, 0x08,    9 /* Private */,
+       9,    0,   70,    2, 0x08,   11 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::QStringList, QMetaType::QString,    4,
-    QMetaType::Void, QMetaType::QString,    6,
-    QMetaType::Void, QMetaType::QString,    6,
-    QMetaType::Void, QMetaType::QString,    6,
+    QMetaType::QStringList,
+    QMetaType::Void, QMetaType::QString,    5,
+    QMetaType::Void, QMetaType::QString,    5,
+    QMetaType::Void, QMetaType::QString,    5,
+    QMetaType::Bool, QMetaType::QString,    5,
+    QMetaType::QString,
 
        0        // eod
 };
@@ -89,11 +95,10 @@ Q_CONSTINIT const QMetaObject student::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSstudentENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<student, std::true_type>,
-        // method 'on_Next_clicked'
+        // method 'on_next_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'readCourseNames'
         QtPrivate::TypeAndForceComplete<QStringList, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'enroll_course'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
@@ -102,7 +107,12 @@ Q_CONSTINIT const QMetaObject student::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'view_grade'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'course_exists'
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'getUserId'
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>
     >,
     nullptr
 } };
@@ -113,12 +123,16 @@ void student::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         auto *_t = static_cast<student *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->on_Next_clicked(); break;
-        case 1: { QStringList _r = _t->readCourseNames((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])));
+        case 0: _t->on_next_clicked(); break;
+        case 1: { QStringList _r = _t->readCourseNames();
             if (_a[0]) *reinterpret_cast< QStringList*>(_a[0]) = std::move(_r); }  break;
         case 2: _t->enroll_course((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 3: _t->drop_course((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 4: _t->view_grade((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 5: { bool _r = _t->course_exists((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])));
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
+        case 6: { QString _r = _t->getUserId();
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     }
@@ -145,13 +159,13 @@ int student::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 7;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 7)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 5;
+        _id -= 7;
     }
     return _id;
 }
