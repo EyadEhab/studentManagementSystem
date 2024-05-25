@@ -5,8 +5,6 @@ a:a:student
 i:i:instructor:fast1:eyad
 cc:cc:student
 ff:ff:student
-::
-::
 name:pass:student
 eyad1123:eyad:instructor
 eyad1123:eyad:instructor
@@ -15,9 +13,9 @@ a:a:student
 i:i:instructor:fast1:eyad
 cc:cc:student
 ff:ff:student
-::
-::
 xx:xx:student
 ii:ii:instructor:eyad
 vv:vv:adminstrator
 p:p:adminstrator
+fast:fast:adminstrator
+ad:ad:adminstrator

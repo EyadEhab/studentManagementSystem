@@ -15,7 +15,7 @@ adduser::~adduser()
 
 void adduser::on_signUp_4_clicked()
 {
-    QString fname = "D:\\STUDENTproject\\studentManagementSystem\\SRC\\Users.txt";
+    QString fname = "D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\Users.txt";
     QFile file(fname);
 
 

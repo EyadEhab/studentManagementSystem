@@ -35,7 +35,6 @@ public:
     QLabel *label;
     QLabel *label_2;
     QLabel *label_3;
-    QLabel *label_4;
 
     void setupUi(QDialog *instructor)
     {
@@ -89,10 +88,6 @@ public:
         label_3 = new QLabel(instructor);
         label_3->setObjectName("label_3");
         label_3->setGeometry(QRect(560, 430, 81, 16));
-        label_4 = new QLabel(instructor);
-        label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(560, 70, 441, 201));
-        label_4->setPixmap(QPixmap(QString::fromUtf8("C:/Users/Yassin/Pictures/Screenshots/Screenshot 2024-05-25 221735.png")));
 
         retranslateUi(instructor);
 
@@ -118,7 +113,6 @@ public:
         label->setText(QCoreApplication::translate("instructor", "student Id", nullptr));
         label_2->setText(QCoreApplication::translate("instructor", "course name", nullptr));
         label_3->setText(QCoreApplication::translate("instructor", "grade", nullptr));
-        label_4->setText(QString());
     } // retranslateUi
 
 };

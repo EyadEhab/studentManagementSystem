@@ -30,7 +30,6 @@ public:
     QRadioButton *drop;
     QRadioButton *viewGrade;
     QPushButton *next;
-    QLabel *label;
 
     void setupUi(QDialog *student)
     {
@@ -39,7 +38,7 @@ public:
         student->resize(1184, 570);
         groupBox = new QGroupBox(student);
         groupBox->setObjectName("groupBox");
-        groupBox->setGeometry(QRect(0, -10, 2101, 611));
+        groupBox->setGeometry(QRect(110, 50, 641, 441));
         courseName = new QLineEdit(groupBox);
         courseName->setObjectName("courseName");
         courseName->setGeometry(QRect(250, 120, 121, 51));
@@ -57,11 +56,7 @@ public:
         viewGrade->setGeometry(QRect(410, 250, 112, 26));
         next = new QPushButton(groupBox);
         next->setObjectName("next");
-        next->setGeometry(QRect(240, 350, 121, 41));
-        label = new QLabel(groupBox);
-        label->setObjectName("label");
-        label->setGeometry(QRect(780, 50, 1471, 601));
-        label->setPixmap(QPixmap(QString::fromUtf8("C:/Users/Yassin/Pictures/Screenshots/Screenshot 2024-05-25 220912.png")));
+        next->setGeometry(QRect(450, 360, 121, 41));
 
         retranslateUi(student);
 
@@ -77,7 +72,6 @@ public:
         drop->setText(QCoreApplication::translate("student", "Drop Course", nullptr));
         viewGrade->setText(QCoreApplication::translate("student", "View Grade", nullptr));
         next->setText(QCoreApplication::translate("student", "Next", nullptr));
-        label->setText(QString());
     } // retranslateUi
 
 };

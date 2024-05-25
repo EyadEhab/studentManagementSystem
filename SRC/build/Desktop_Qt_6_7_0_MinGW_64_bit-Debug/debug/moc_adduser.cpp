@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../../../studentManagementSystem111111111 - Copy/SRC/adduser.h"
+#include "../../../adduser.h"
 #include <QtGui/qtextcursor.h>
 #include <QtCore/qmetatype.h>
 

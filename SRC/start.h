@@ -15,6 +15,9 @@ public:
     explicit start(QWidget *parent = nullptr);
     ~start();
 
+private slots:
+    void on_START_clicked();
+
 private:
     Ui::start *ui;
 };

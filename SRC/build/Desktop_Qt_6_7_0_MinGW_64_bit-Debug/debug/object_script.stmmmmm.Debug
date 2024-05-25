@@ -6,11 +6,9 @@ debug/signup2.o
 debug/user.o
 debug/instructor.o
 debug/student.o
-debug/start.o
 debug/moc_adduser.o
 debug/moc_adminstrator.o
 debug/moc_mainwindow.o
 debug/moc_signup2.o
 debug/moc_instructor.o
 debug/moc_student.o
-debug/moc_start.o

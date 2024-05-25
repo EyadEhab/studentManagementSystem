@@ -25,11 +25,11 @@ void MainWindow::on_Login_clicked()
 
     QString userId = ui->userId->text();
     QString password = ui->Password->text();
-    QString fname = "D:\\STUDENTproject\\studentManagementSystem\\SRC\\Users.txt";
+    QString fname = "D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\Users.txt";
     QFile file(fname);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QMessageBox::warning(this, "Error", "Unable to open file.");
+        QMessageBox::warning(this, "Error", "Unable to open file.login");
         return;
     }
 

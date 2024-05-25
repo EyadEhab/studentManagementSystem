@@ -304,6 +304,19 @@
     <string>22-101233</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="START">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>423</y>
+     <width>161</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>START</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

@@ -127,7 +127,7 @@ void adminstrator::loadCoursesFromFile()
 
 
 
-void adminstrator::on_removeUser_clicked()
+void adminstrator::on_removed_2_clicked()
 {
     QString removeuser = ui->removed->text();
     QString fname = "D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\Users.txt";
