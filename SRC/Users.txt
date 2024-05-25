@@ -5,3 +5,5 @@ eyad:eyad:student
 eyad1123:eyad:instructor
 eyad:fast:adminstrator
 yassin:yassin:student
+a:a:student
+i:i:instructor

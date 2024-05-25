@@ -3,6 +3,7 @@
 #include "adduser.h"
 
 
+
 adminstrator::adminstrator(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::adminstrator)
@@ -211,4 +212,6 @@ void adminstrator::on_adduser_clicked()
     adduser.setModal(true);
     adduser.exec();
 }
+
+
 

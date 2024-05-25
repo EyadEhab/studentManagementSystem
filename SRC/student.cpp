@@ -13,12 +13,7 @@ student::~student()
 }
 
 
-void student::setEnrolledCourses(const QStringList &courses)
-{
-    for (int i = 0; i < 5; ++i) {
-        this->enrolledCourses[i] = courses[i];
-    }
-}
+
 
 
 
@@ -58,53 +53,26 @@ void student::on_next_clicked()
 
 
 
-bool student::course_exists(const QString &courseName) {
 
-
-QString fname = "D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\courses.txt";
-QFile file(fname);
-
-
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QMessageBox::warning(nullptr, "Error", "Unable to open course file.");
-        return false;
-    }
-
-    QTextStream stream(&file);
-    while (!stream.atEnd()) {
-        QString line = stream.readLine();
-        if (line.trimmed() == courseName.trimmed()) {
-            file.close();
-            return true;
-        }
-    }
-
-    file.close();
-    return false;
-}
 
 
 void student::enroll_course(const QString &courseName) {
     qDebug() << "Enrolling in course:" << courseName;
 
-    // Check if the course exists
-    if (!course_exists(courseName)) {
-        QMessageBox::warning(nullptr, "Error", "Course does not exist.");
-        return;
-    }
-
     // Get the user ID of the student
     QString userId = this->getUserId();
     qDebug() << "User ID:" << userId;
 
-    // Open the users file for reading and writing
+    // Open the grades file for reading and writing
     QString fname = "D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\Grades.txt";
+    qDebug() << "1";
     QFile file(fname);
+    qDebug() << "2";
     if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
-        QMessageBox::warning(nullptr, "Error", "Unable to open user file.");
+        QMessageBox::warning(nullptr, "Error", "Unable to open grades file.");
         return;
     }
-
+    qDebug() << "3";
     QTextStream stream(&file);
     QString content;
     bool userFound = false;
@@ -115,12 +83,15 @@ void student::enroll_course(const QString &courseName) {
         qDebug() << "Reading line:" << line;
 
         // Check if the line corresponds to the current user
-        if (parts.size() >= 3 && parts[0] == userId) {
+        if (parts.size() >= 1 && parts[0] == userId) {
             userFound = true;
             qDebug() << "User found, processing courses...";
 
-            // Extract the list of enrolled courses
-            QStringList courses = parts.mid(3);
+            // Extract the list of enrolled courses and grades
+            QStringList courses;
+            for (int i = 1; i < parts.size(); i += 2) {
+                courses.append(parts[i]);
+            }
             qDebug() << "Current courses:" << courses;
 
             // Check if the course is already enrolled
@@ -137,15 +108,13 @@ void student::enroll_course(const QString &courseName) {
                 return;
             }
 
-            // Add the new course to the list of courses
-            courses.append(courseName);
+            // Add the new course to the list of courses and append a placeholder for the grade
+            parts.append(courseName);
+            parts.append("N/A"); // Use "N/A" as a placeholder for the grade
             qDebug() << "Updated courses:" << courses;
 
-            // Reconstruct the line with the updated course list
-            line = parts[0] + ':' + parts[1] + ':' + parts[2];
-            for (const QString& course : courses) {
-                line += ':' + course;
-            }
+            // Reconstruct the line with the updated course and grade list
+            line = parts.join(':');
             qDebug() << "Updated line:" << line;
         }
 
@@ -155,16 +124,15 @@ void student::enroll_course(const QString &courseName) {
     if (userFound) {
         file.resize(0); // Clear the file content
         stream << content; // Write the updated content back to the file
-        QMessageBox::warning(nullptr, "Enrolled", "enrolled successfully");
+         QMessageBox::information(nullptr, "Done", "Course Enrolled");
     } else {
-        QMessageBox::warning(nullptr, "Error", "User not found.");
+        // If the user was not found, add a new line for the user
+        QString newLine = userId + ":" + courseName + ":N/A";
+        content += newLine + '\n';
     }
 
     file.close();
 }
-
-
-
 
 
 
@@ -175,61 +143,67 @@ void student::drop_course(const QString &courseName) {
 
     // Get the user ID of the student
     QString userId = this->getUserId();
+    qDebug() << "User ID:" << userId;
 
-    // Open the users file for reading and writing
+    // Open the grades file for reading and writing
     QString fname = "D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\Grades.txt";
     QFile file(fname);
     if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
-        QMessageBox::warning(nullptr, "Error", "Unable to open user file.");
+        QMessageBox::warning(nullptr, "Error", "Unable to open grades file.");
         return;
     }
 
     QTextStream stream(&file);
     QString content;
     bool userFound = false;
+    bool courseDropped = false;
 
-    // Read each line from the users file
     while (!stream.atEnd()) {
         QString line = stream.readLine();
         QStringList parts = line.split(':');
+        qDebug() << "Reading line:" << line;
 
         // Check if the line corresponds to the current user
-        if (parts.size() >= 3 && parts[0] == userId) {
+        if (parts.size() >= 2 && parts[0] == userId) {
             userFound = true;
+            qDebug() << "User found, processing courses...";
 
-            // Extract the list of enrolled courses
-            QStringList courses = parts.mid(3);
-
-            // Remove the course if it exists
-            if (!courses.contains(courseName)) {
-                QMessageBox::warning(nullptr, "Error", "Not enrolled in this course.");
-                file.close();
-                return;
+            // Extract the list of enrolled courses and grades
+            QStringList newParts;
+            newParts.append(parts[0]); // Keep the user ID
+            for (int i = 1; i < parts.size(); i += 2) {
+                if (parts[i] == courseName) {
+                    courseDropped = true;
+                    qDebug() << "Course found and will be dropped:" << parts[i];
+                    continue; // Skip this course and its grade
+                }
+                newParts.append(parts[i]);
+                newParts.append(parts[i + 1]);
             }
 
-            courses.removeAll(courseName);
-
-            // Reconstruct the line with the updated course list
-            line = parts[0] + ':' + parts[1] + ':' + parts[2];
-            for (const QString& course : courses) {
-                line += ':' + course;
-            }
+            // Reconstruct the line with the updated course and grade list
+            line = newParts.join(':');
+            qDebug() << "Updated line after dropping course:" << line;
         }
 
         content += line + '\n';
     }
 
-    // If the user was found, rewrite the file with updated content
     if (userFound) {
-        file.resize(0); // Clear the file
-        stream << content;
-        QMessageBox::warning(nullptr, "Dropped", "Dropped Successfully");
+        if (courseDropped) {
+            file.resize(0); // Clear the file content
+            stream << content; // Write the updated content back to the file
+            QMessageBox::information(nullptr, "Done", "Course dropped");
+        } else {
+            QMessageBox::warning(nullptr, "Error", "Course not found.");
+        }
     } else {
         QMessageBox::warning(nullptr, "Error", "User not found.");
     }
 
     file.close();
 }
+
 
 void student::view_grade(const QString &courseName)
 {

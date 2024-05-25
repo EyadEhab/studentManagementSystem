@@ -26,6 +26,7 @@ class instructor : public QDialog, public user
 public:
     explicit instructor(QWidget *parent = nullptr);
     instructor(QString , QString);
+    QStringList readCourseNames();
 
     ~instructor();
 
@@ -34,6 +35,8 @@ private slots:
     void on_removeCourse_clicked();
     void on_updateGrade_clicked();
     addCourse(const QString& );
+    void add_grade(const QString &, const QString &, const QString &);
+
 
 
 private:
