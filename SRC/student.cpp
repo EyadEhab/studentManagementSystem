@@ -44,7 +44,8 @@ void student::on_next_clicked()
             view_grade(courseName);
         }
     } else {
-        qDebug() << "Course does not exist";
+        QMessageBox::warning(nullptr, "Error", "Course does not exist");
+
     }
 }
 
@@ -205,10 +206,50 @@ void student::drop_course(const QString &courseName) {
 }
 
 
-void student::view_grade(const QString &courseName)
-{
+void student::view_grade(const QString &courseName) {
     qDebug() << "Viewing grade for course:" << courseName;
-    // Implement the logic to view grade for the given course
+
+    QString userId = this->getUserId();
+    QString fname = "D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\Grades.txt";
+    QFile file(fname);
+
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::warning(nullptr, "Error", "Unable to open grades file.");
+        return;
+    }
+
+    QTextStream stream(&file);
+    bool courseFound = false;
+    QString grade = "NA";
+
+    while (!stream.atEnd()) {
+        QString line = stream.readLine();
+        QStringList parts = line.split(':');
+
+        if (parts.size() > 2 && parts[0] == userId) {
+            for (int i = 1; i < parts.size(); i += 2) {
+                if (parts[i] == courseName) {
+                    courseFound = true;
+                    if (i + 1 < parts.size()) {
+                        grade = parts[i + 1];
+                    }
+                    break;
+                }
+            }
+        }
+
+        if (courseFound) {
+            break;
+        }
+    }
+
+    file.close();
+
+    if (courseFound) {
+        QMessageBox::information(nullptr, "Grade", "Grade for course " + courseName + ": " + grade);
+    } else {
+        QMessageBox::warning(nullptr, "Error", "Course not found or not enrolled in the course.");
+    }
 }
 
 QStringList student::readCourseNames()

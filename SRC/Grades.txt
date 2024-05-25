@@ -1,2 +1,1 @@
-a:eyad:100
-i
+a:eyad:100:fast1:50

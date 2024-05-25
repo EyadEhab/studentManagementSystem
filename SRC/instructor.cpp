@@ -130,57 +130,95 @@ void instructor::on_removeCourse_clicked()
     }
 
 
-void instructor::add_grade(const QString &studentId, const QString &courseName, const QString &grade) {
-    qDebug() << "Adding or updating grade to course:" << courseName << "for student ID:" << studentId << "Grade:" << grade;
+    void instructor::add_grade(const QString &studentId, const QString &courseName, const QString &grade) {
+        qDebug() << "Adding or updating grade to course:" << courseName << "for student ID:" << studentId << "Grade:" << grade;
 
-    // Open the grades file for reading and writing
-    QString fname = "D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\Grades.txt";
-    QFile file(fname);
-    if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
-        QMessageBox::warning(this, "Error", "Unable to open grades file.");
-        return;
-    }
+        // Open the users file to check if the instructor has the course
+        QString usersFile = "D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\Users.txt";
+        QFile users(usersFile);
 
-    QTextStream stream(&file);
-    QString content;
-    bool studentFound = false;
+        if (!users.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QMessageBox::warning(this, "Error", "Unable to open users file.");
+            return;
+        }
 
-    while (!stream.atEnd()) {
-        QString line = stream.readLine();
-        QStringList parts = line.split(':');
+        bool instructorHasCourse = false;
+        QString userId = this->getUserId();
 
-        // Check if the line corresponds to the student
-        if (parts.size() >= 1 && parts[0] == studentId) {
-            studentFound = true;
-            qDebug() << "Student found, processing grades...";
+        // Read user information line by line
+        QTextStream usersStream(&users);
+        while (!usersStream.atEnd()) {
+            QString line = usersStream.readLine();
+            QStringList parts = line.split(':');
 
-            // Iterate over the courses and grades
-            for (int i = 1; i < parts.size(); i += 2) {
-                if (parts[i] == courseName) {
-                    // Update the grade if the course already exists
-                    parts[i + 1] = grade;
+            // Check if the line corresponds to the instructor
+            if (parts.size() >= 4 && parts[0] == userId && parts[2] == "instructor") {
+                // Check if the instructor is assigned to the specified course
+                if (parts.mid(3).contains(courseName)) {
+                    instructorHasCourse = true;
                     break;
                 }
             }
-
-            // Reconstruct the line with the updated course and grade list
-            line = parts.join(':');
-            qDebug() << "Updated line:" << line;
         }
 
-        content += line + '\n';
+        users.close();
+
+        // If the instructor has the course, proceed to update the grade
+        if (instructorHasCourse) {
+            // Open the grades file for reading and writing
+            QString gradesFile = "D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\Grades.txt";
+            QFile grades(gradesFile);
+
+            if (!grades.open(QIODevice::ReadWrite | QIODevice::Text)) {
+                QMessageBox::warning(this, "Error", "Unable to open grades file.");
+                return;
+            }
+
+            QTextStream stream(&grades);
+            QString content;
+            bool studentFound = false;
+
+            // Read and update grades
+            while (!stream.atEnd()) {
+                QString line = stream.readLine();
+                QStringList parts = line.split(':');
+
+                // Check if the line corresponds to the student
+                if (parts.size() >= 1 && parts[0] == studentId) {
+                    studentFound = true;
+                    qDebug() << "Student found, processing grades...";
+
+                    // Iterate over the courses and grades
+                    for (int i = 1; i < parts.size(); i += 2) {
+                        if (parts[i] == courseName) {
+                            // Update the grade if the course already exists
+                            parts[i + 1] = grade;
+                            break;
+                        }
+                    }
+
+                    // Reconstruct the line with the updated course and grade list
+                    line = parts.join(':');
+                    qDebug() << "Updated line:" << line;
+                }
+
+                content += line + '\n';
+            }
+
+            if (studentFound) {
+                grades.resize(0); // Clear the file content
+                stream << content; // Write the updated content back to the file
+                QMessageBox::information(this, "Grade Added", "Grade added or updated successfully.");
+            } else {
+                QMessageBox::warning(this, "Error", "Student not found.");
+            }
+
+            grades.close();
+        } else {
+            QMessageBox::warning(this, "Error", "Instructor does not have this course.");
+        }
     }
 
-    if (studentFound) {
-        file.resize(0); // Clear the file content
-        stream << content; // Write the updated content back to the file
-        QMessageBox::information(this, "Grade Added", "Grade added or updated successfully.");
-    } else {
-        QMessageBox::warning(this, "Error", "Student not found.");
-    }
-
-    file.close();
-}
 
 
 

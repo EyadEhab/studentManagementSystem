@@ -69,13 +69,14 @@ public:
         Password = new QLineEdit(groupBox);
         Password->setObjectName("Password");
         Password->setGeometry(QRect(190, 120, 221, 31));
+        Password->setEchoMode(QLineEdit::Password);
         Signup = new QPushButton(groupBox);
         Signup->setObjectName("Signup");
         Signup->setGeometry(QRect(50, 220, 61, 20));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 800, 25));
+        menubar->setGeometry(QRect(0, 0, 800, 21));
         menufafa = new QMenu(menubar);
         menufafa->setObjectName("menufafa");
         MainWindow->setMenuBar(menubar);
