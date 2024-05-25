@@ -16,10 +16,10 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>110</x>
-     <y>50</y>
-     <width>641</width>
-     <height>441</height>
+     <x>0</x>
+     <y>-10</y>
+     <width>2101</width>
+     <height>611</height>
     </rect>
    </property>
    <property name="title">
@@ -90,14 +90,30 @@
    <widget class="QPushButton" name="next">
     <property name="geometry">
      <rect>
-      <x>450</x>
-      <y>360</y>
+      <x>240</x>
+      <y>350</y>
       <width>121</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>Next</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>-10</y>
+      <width>1471</width>
+      <height>601</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>C:/Users/Yassin/Pictures/Screenshots/Screenshot 2024-05-25 220912.png</pixmap>
     </property>
    </widget>
   </widget>

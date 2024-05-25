@@ -16,33 +16,36 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>70</y>
-     <width>711</width>
-     <height>451</height>
+     <x>0</x>
+     <y>-10</y>
+     <width>1131</width>
+     <height>701</height>
     </rect>
    </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
    <property name="title">
-    <string>signup</string>
+    <string>Sign up</string>
    </property>
    <widget class="QPushButton" name="signUp_4">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>360</y>
-      <width>80</width>
-      <height>24</height>
+      <x>280</x>
+      <y>430</y>
+      <width>131</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
-     <string>Sign up</string>
+     <string>sign up</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_11">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>170</y>
+      <x>20</x>
+      <y>160</y>
       <width>161</width>
       <height>51</height>
      </rect>
@@ -54,14 +57,14 @@
      </font>
     </property>
     <property name="text">
-     <string>Password : </string>
+     <string>Password:  </string>
     </property>
    </widget>
    <widget class="QRadioButton" name="student_4">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>260</y>
+      <x>130</x>
+      <y>300</y>
       <width>101</width>
       <height>22</height>
      </rect>
@@ -78,9 +81,9 @@
    <widget class="QRadioButton" name="instractur_4">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>260</y>
-      <width>111</width>
+      <x>270</x>
+      <y>300</y>
+      <width>131</width>
       <height>22</height>
      </rect>
     </property>
@@ -90,15 +93,15 @@
      </font>
     </property>
     <property name="text">
-     <string>Instractur</string>
+     <string>Instructor</string>
     </property>
    </widget>
    <widget class="QRadioButton" name="admin_4">
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>260</y>
-      <width>141</width>
+      <x>430</x>
+      <y>300</y>
+      <width>161</width>
       <height>22</height>
      </rect>
     </property>
@@ -146,20 +149,78 @@
    <widget class="QLineEdit" name="password_4">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>190</y>
+      <x>180</x>
+      <y>170</y>
       <width>221</width>
       <height>31</height>
+     </rect>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Password</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>860</x>
+      <y>20</y>
+      <width>281</width>
+      <height>661</height>
      </rect>
     </property>
     <property name="text">
      <string/>
     </property>
-    <property name="echoMode">
-     <enum>QLineEdit::Password</enum>
+    <property name="pixmap">
+     <pixmap>C:/Users/Yassin/Pictures/Screenshot 2024-05-25 185259.png</pixmap>
     </property>
-    <property name="placeholderText">
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>330</y>
+      <width>101</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
      <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>C:/Users/Yassin/Pictures/Screenshots/Screenshot 2024-05-25 192306.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>330</y>
+      <width>101</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>C:/Users/Yassin/Pictures/Screenshots/Screenshot 2024-05-25 192513.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>330</y>
+      <width>91</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>C:/Users/Yassin/Pictures/Screenshots/Screenshot 2024-05-25 192930.png</pixmap>
     </property>
    </widget>
   </widget>

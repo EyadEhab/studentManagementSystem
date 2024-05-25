@@ -34,7 +34,7 @@ private slots:
     void on_addCourse_clicked();
     void on_removeCourse_clicked();
     void on_updateGrade_clicked();
-    addCourse(const QString& );
+    void addCourse(const QString& );
     void add_grade(const QString &, const QString &, const QString &);
 
 

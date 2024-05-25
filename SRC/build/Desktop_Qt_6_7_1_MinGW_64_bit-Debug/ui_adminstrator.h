@@ -24,11 +24,11 @@ class Ui_adminstrator
 public:
     QGroupBox *groupBox;
     QLabel *label;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
+    QPushButton *plus;
+    QPushButton *removed_2;
     QPushButton *addCourse;
     QPushButton *removeCourse;
-    QLineEdit *lineEdit_3;
+    QLineEdit *removed;
     QLineEdit *addCourse1;
     QLineEdit *removeCourse1;
 
@@ -39,32 +39,32 @@ public:
         adminstrator->resize(976, 576);
         groupBox = new QGroupBox(adminstrator);
         groupBox->setObjectName("groupBox");
-        groupBox->setGeometry(QRect(10, 20, 941, 551));
+        groupBox->setGeometry(QRect(0, 30, 1021, 551));
         label = new QLabel(groupBox);
         label->setObjectName("label");
-        label->setGeometry(QRect(350, 60, 181, 20));
+        label->setGeometry(QRect(340, 80, 161, 51));
         QFont font;
         font.setPointSize(15);
         font.setBold(true);
         label->setFont(font);
-        pushButton = new QPushButton(groupBox);
-        pushButton->setObjectName("pushButton");
-        pushButton->setGeometry(QRect(90, 190, 83, 29));
-        pushButton_2 = new QPushButton(groupBox);
-        pushButton_2->setObjectName("pushButton_2");
-        pushButton_2->setGeometry(QRect(90, 280, 83, 29));
+        plus = new QPushButton(groupBox);
+        plus->setObjectName("plus");
+        plus->setGeometry(QRect(90, 190, 83, 29));
+        removed_2 = new QPushButton(groupBox);
+        removed_2->setObjectName("removed_2");
+        removed_2->setGeometry(QRect(80, 280, 101, 29));
         addCourse = new QPushButton(groupBox);
         addCourse->setObjectName("addCourse");
-        addCourse->setGeometry(QRect(650, 180, 83, 29));
+        addCourse->setGeometry(QRect(640, 178, 101, 31));
         removeCourse = new QPushButton(groupBox);
         removeCourse->setObjectName("removeCourse");
-        removeCourse->setGeometry(QRect(620, 280, 111, 29));
-        lineEdit_3 = new QLineEdit(groupBox);
-        lineEdit_3->setObjectName("lineEdit_3");
-        lineEdit_3->setGeometry(QRect(70, 320, 121, 28));
+        removeCourse->setGeometry(QRect(640, 280, 111, 29));
+        removed = new QLineEdit(groupBox);
+        removed->setObjectName("removed");
+        removed->setGeometry(QRect(70, 320, 121, 28));
         addCourse1 = new QLineEdit(groupBox);
         addCourse1->setObjectName("addCourse1");
-        addCourse1->setGeometry(QRect(592, 230, 131, 28));
+        addCourse1->setGeometry(QRect(620, 230, 141, 28));
         removeCourse1 = new QLineEdit(groupBox);
         removeCourse1->setObjectName("removeCourse1");
         removeCourse1->setGeometry(QRect(620, 320, 141, 28));
@@ -77,10 +77,10 @@ public:
     void retranslateUi(QDialog *adminstrator)
     {
         adminstrator->setWindowTitle(QCoreApplication::translate("adminstrator", "Dialog", nullptr));
-        groupBox->setTitle(QCoreApplication::translate("adminstrator", "GroupBox", nullptr));
+        groupBox->setTitle(QCoreApplication::translate("adminstrator", "ADMINSTRATOR", nullptr));
         label->setText(QCoreApplication::translate("adminstrator", "Adminstrator", nullptr));
-        pushButton->setText(QCoreApplication::translate("adminstrator", "add user", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("adminstrator", "remove user", nullptr));
+        plus->setText(QCoreApplication::translate("adminstrator", "Add user", nullptr));
+        removed_2->setText(QCoreApplication::translate("adminstrator", "Remove user", nullptr));
         addCourse->setText(QCoreApplication::translate("adminstrator", "add course", nullptr));
         removeCourse->setText(QCoreApplication::translate("adminstrator", "remove course", nullptr));
     } // retranslateUi

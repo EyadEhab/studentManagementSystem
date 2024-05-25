@@ -16,9 +16,9 @@
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>20</y>
-     <width>941</width>
+     <x>0</x>
+     <y>30</y>
+     <width>1021</width>
      <height>551</height>
     </rect>
    </property>
@@ -28,10 +28,10 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>60</y>
-      <width>181</width>
-      <height>20</height>
+      <x>340</x>
+      <y>80</y>
+      <width>161</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -44,7 +44,7 @@
      <string>Adminstrator</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="adduser">
+   <widget class="QPushButton" name="plus">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -54,29 +54,29 @@
      </rect>
     </property>
     <property name="text">
-     <string>add user</string>
+     <string>Add user</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="removeUser">
+   <widget class="QPushButton" name="removed_2">
     <property name="geometry">
      <rect>
-      <x>90</x>
+      <x>80</x>
       <y>280</y>
-      <width>83</width>
+      <width>101</width>
       <height>29</height>
      </rect>
     </property>
     <property name="text">
-     <string>remove user</string>
+     <string>Remove user</string>
     </property>
    </widget>
    <widget class="QPushButton" name="addCourse">
     <property name="geometry">
      <rect>
-      <x>650</x>
-      <y>180</y>
-      <width>83</width>
-      <height>29</height>
+      <x>640</x>
+      <y>178</y>
+      <width>101</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="text">
@@ -86,7 +86,7 @@
    <widget class="QPushButton" name="removeCourse">
     <property name="geometry">
      <rect>
-      <x>620</x>
+      <x>640</x>
       <y>280</y>
       <width>111</width>
       <height>29</height>
@@ -109,9 +109,9 @@
    <widget class="QLineEdit" name="addCourse1">
     <property name="geometry">
      <rect>
-      <x>592</x>
+      <x>620</x>
       <y>230</y>
-      <width>131</width>
+      <width>141</width>
       <height>28</height>
      </rect>
     </property>

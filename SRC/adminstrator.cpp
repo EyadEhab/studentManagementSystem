@@ -210,7 +210,7 @@ void adminstrator::on_removeUser_clicked()
 
 
 
-void adminstrator::on_adduser_clicked()
+void adminstrator::on_plus_clicked()
 {
     qDebug() << "adduser";
     adduser adduser;

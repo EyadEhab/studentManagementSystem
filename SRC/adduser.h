@@ -32,7 +32,7 @@ private slots:
 
 
 private:
-    Ui::adduser *ui;
+    Ui::adduser*ui;
 };
 
-#endif // ADDUSER_H
+#endif // ADDUSER1_H
