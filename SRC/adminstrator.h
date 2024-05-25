@@ -31,6 +31,10 @@ private slots:
 
     void on_removeUser_clicked();
 
+    void on_addUser_clicked();
+
+    void on_adduser_clicked();
+
 private:
     void addCourse(const QString& courseName);
     void removeCourse(const QString& courseName);

@@ -74,7 +74,7 @@ void adminstrator::listCourses() const
 
 void adminstrator::saveCoursesToFile()
 {
-    QFile file("D:\\STUDENTproject\\studentManagementSystem\\SRC\\courses.txt");
+    QFile file("D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\courses.txt");
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qWarning() << "Unable to open file for writing:" << file.errorString();
         return;
@@ -86,12 +86,12 @@ void adminstrator::saveCoursesToFile()
     }
 
     file.close();
-    qDebug() << "Courses saved to file:" << "D:\\STUDENTproject\\studentManagementSystem\\SRC\\courses.txt";
+    qDebug() << "Courses saved to file:" << "D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\courses.txt";
 }
 
 void adminstrator::loadCoursesFromFile()
 {
-    QFile file("D:\\STUDENTproject\\studentManagementSystem\\SRC\\courses.txt");
+    QFile file("D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\courses.txt");
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "Unable to open file for reading:" << file.errorString();
         return;
@@ -115,21 +115,16 @@ void adminstrator::loadCoursesFromFile()
     }
 
     file.close();
-    qDebug() << "Courses loaded from file:" << "D:\\STUDENTproject\\studentManagementSystem\\SRC\\courses.txt";
+    qDebug() << "Courses loaded from file:" << "D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\courses.txt";
 }
 
-void adminstrator::on_pushButton_clicked()
-{
-    adduser adduser;
-    adduser.setModal(true);
-    adduser.exec();
-}
+
 
 
 void adminstrator::on_removeUser_clicked()
 {
-    QString removeuser = ui->removeuser1->text();
-    QString fname = "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\Users.txt";
+    QString removeuser = ui->removed->text();
+    QString fname = "D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\Users.txt";
     QFile file(fname);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -171,7 +166,7 @@ void adminstrator::on_removeUser_clicked()
     QString content;
 
 
-    bool enrolled = false;
+    bool removed = false;
 
     while (!stream.atEnd()) {
         QString line = stream.readLine();
@@ -179,7 +174,7 @@ void adminstrator::on_removeUser_clicked()
 
         if (parts.size() >= 3 && parts[0] == removeuser) {
             content += "";
-            enrolled = true;
+            removed = true;
 
         }else content += parts.join(':') + '\n';
 
@@ -188,8 +183,9 @@ void adminstrator::on_removeUser_clicked()
 
     file.close();
 
-    if (enrolled) {
+    if (removed) {
         if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            qDebug() << "removed done writing now";
             QTextStream out(&file);
             out << content;
             file.close();
@@ -203,4 +199,16 @@ void adminstrator::on_removeUser_clicked()
 }
 
 
+
+
+
+
+
+void adminstrator::on_adduser_clicked()
+{
+    qDebug() << "adduser";
+    adduser adduser;
+    adduser.setModal(true);
+    adduser.exec();
+}
 

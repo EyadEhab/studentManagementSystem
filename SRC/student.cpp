@@ -53,22 +53,17 @@ void student::on_next_clicked()
     }
 }
 
- student::student(const QString &userId) : m_userId(userId) {
-    // Constructor implementation
-}
 
-<<<<<<< HEAD
-QString student::getUserId() {
-    return m_userId;
-}
+
+
+
 
 bool student::course_exists(const QString &courseName) {
-    QString courseFile = "D:\\STUDENTproject\\studentManagementSystem\\SRC\\Courses.txt";
-    QFile file(courseFile);
-=======
-    QString fname = "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\courses.txt";
-    QFile file(fname);
->>>>>>> d5005b7b1d417f11057d57d86f531ec5f2dd0f94
+
+
+QString fname = "D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\courses.txt";
+QFile file(fname);
+
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QMessageBox::warning(nullptr, "Error", "Unable to open course file.");
@@ -100,9 +95,10 @@ void student::enroll_course(const QString &courseName) {
 
     // Get the user ID of the student
     QString userId = this->getUserId();
+    qDebug() << "User ID:" << userId;
 
     // Open the users file for reading and writing
-    QString fname = "D:\\STUDENTproject\\studentManagementSystem\\SRC\\Users.txt";
+    QString fname = "D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\Grades.txt";
     QFile file(fname);
     if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
         QMessageBox::warning(nullptr, "Error", "Unable to open user file.");
@@ -111,6 +107,86 @@ void student::enroll_course(const QString &courseName) {
 
     QTextStream stream(&file);
     QString content;
+    bool userFound = false;
+
+    while (!stream.atEnd()) {
+        QString line = stream.readLine();
+        QStringList parts = line.split(':');
+        qDebug() << "Reading line:" << line;
+
+        // Check if the line corresponds to the current user
+        if (parts.size() >= 3 && parts[0] == userId) {
+            userFound = true;
+            qDebug() << "User found, processing courses...";
+
+            // Extract the list of enrolled courses
+            QStringList courses = parts.mid(3);
+            qDebug() << "Current courses:" << courses;
+
+            // Check if the course is already enrolled
+            if (courses.contains(courseName)) {
+                QMessageBox::warning(nullptr, "Error", "Already enrolled in this course.");
+                file.close();
+                return;
+            }
+
+            // Check if the student is already enrolled in 5 courses
+            if (courses.size() >= 5) {
+                QMessageBox::warning(nullptr, "Error", "Cannot enroll in more than 5 courses.");
+                file.close();
+                return;
+            }
+
+            // Add the new course to the list of courses
+            courses.append(courseName);
+            qDebug() << "Updated courses:" << courses;
+
+            // Reconstruct the line with the updated course list
+            line = parts[0] + ':' + parts[1] + ':' + parts[2];
+            for (const QString& course : courses) {
+                line += ':' + course;
+            }
+            qDebug() << "Updated line:" << line;
+        }
+
+        content += line + '\n';
+    }
+
+    if (userFound) {
+        file.resize(0); // Clear the file content
+        stream << content; // Write the updated content back to the file
+        QMessageBox::warning(nullptr, "Enrolled", "enrolled successfully");
+    } else {
+        QMessageBox::warning(nullptr, "Error", "User not found.");
+    }
+
+    file.close();
+}
+
+
+
+
+
+
+
+
+void student::drop_course(const QString &courseName) {
+    qDebug() << "Dropping course:" << courseName;
+
+    // Get the user ID of the student
+    QString userId = this->getUserId();
+
+    // Open the users file for reading and writing
+    QString fname = "D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\Grades.txt";
+    QFile file(fname);
+    if (!file.open(QIODevice::ReadWrite | QIODevice::Text)) {
+        QMessageBox::warning(nullptr, "Error", "Unable to open user file.");
+        return;
+    }
+
+    QTextStream stream(&file);
+    QString content;
+    bool userFound = false;
 
     // Read each line from the users file
     while (!stream.atEnd()) {
@@ -118,82 +194,41 @@ void student::enroll_course(const QString &courseName) {
         QStringList parts = line.split(':');
 
         // Check if the line corresponds to the current user
-        if (parts.size() >= 1 && parts[0] == userId) {
-            // Append the new course to the user's information
-            line += ":" + courseName;
-        }
-        content += line + '\n';
-    }
+        if (parts.size() >= 3 && parts[0] == userId) {
+            userFound = true;
 
-    file.close();
+            // Extract the list of enrolled courses
+            QStringList courses = parts.mid(3);
 
-    // Open the users file for writing
-    if (file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
-        QTextStream out(&file);
-        out << content;
-        file.close();
-        QMessageBox::information(nullptr, "Success", "Course enrolled successfully.");
-    } else {
-        QMessageBox::warning(nullptr, "Error", "Unable to open user file for writing.");
-    }
-}
+            // Remove the course if it exists
+            if (!courses.contains(courseName)) {
+                QMessageBox::warning(nullptr, "Error", "Not enrolled in this course.");
+                file.close();
+                return;
+            }
 
+            courses.removeAll(courseName);
 
-
-
-
-void student::drop_course(const QString &courseName)
-{
-    qDebug() << "Dropping course:" << courseName;
-
-<<<<<<< HEAD
-    QString fname = "D:\\STUDENTproject\\studentManagementSystem\\SRC\\Users.txt";
-=======
-    QString fname = "D:\\studentManagementSystem\\studentManagementSystem\\SRC\\courses.txt";
->>>>>>> d5005b7b1d417f11057d57d86f531ec5f2dd0f94
-    QFile file(fname);
-
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QMessageBox::warning(this, "Error", "Unable to open file.");
-        return;
-    }
-
-    QTextStream stream(&file);
-    QString content;
-    QStringList parts;
-    QString userId = this->getUserId();
-    bool dropped = false;
-
-    while (!stream.atEnd()) {
-        QString line = stream.readLine();
-        parts = line.split(':');
-
-        if (parts.size() >= 4 && parts[0] == userId) {
-            QStringList courses = parts.mid(3); // Extract courses starting from the 4th part
-            if (courses.contains(courseName)) {
-                courses.removeAll(courseName);
-                parts = parts.mid(0, 3) + courses; // Combine user info with updated courses
-                dropped = true;
+            // Reconstruct the line with the updated course list
+            line = parts[0] + ':' + parts[1] + ':' + parts[2];
+            for (const QString& course : courses) {
+                line += ':' + course;
             }
         }
 
-        content += parts.join(':') + '\n';
+        content += line + '\n';
+    }
+
+    // If the user was found, rewrite the file with updated content
+    if (userFound) {
+        file.resize(0); // Clear the file
+        stream << content;
+        QMessageBox::warning(nullptr, "Dropped", "Dropped Successfully");
+    } else {
+        QMessageBox::warning(nullptr, "Error", "User not found.");
     }
 
     file.close();
-
-    if (dropped) {
-        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            QTextStream out(&file);
-            out << content;
-            file.close();
-            QMessageBox::information(this, "Success", "Course dropped successfully.");
-        } else {
-            QMessageBox::warning(this, "Error", "Unable to open file for writing.");
-        }
-    } else {
-        QMessageBox::warning(this, "Error", "Unable to drop the course.");
-    }
 }
 
 void student::view_grade(const QString &courseName)
@@ -205,7 +240,7 @@ void student::view_grade(const QString &courseName)
 QStringList student::readCourseNames()
 {
     QStringList courseList;
-    QFile file("D:\\STUDENTproject\\studentManagementSystem\\SRC\\courses.txt");
+    QFile file("D:\\studentManagementSystem\\studentManagementSystem111111111 - Copy\\SRC\\courses.txt");
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Could not open file for reading";
@@ -220,4 +255,3 @@ QStringList student::readCourseNames()
     file.close();
     return courseList;
 }
-

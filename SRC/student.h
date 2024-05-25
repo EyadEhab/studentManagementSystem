@@ -15,10 +15,9 @@ class student : public QDialog, public user
     Q_OBJECT
 
 public:
-    explicit student(const QString &userId, const QString &password, QWidget*parent = nullptr);
+    explicit student(const QString &userId, const QString &password, QWidget *parent = nullptr);
     ~student();
     void setEnrolledCourses(const QStringList &courses); // Updated to QStringList for better handling
-    student(const QString &userId);
 
 
 private slots:
@@ -28,12 +27,10 @@ private slots:
     void drop_course(const QString &courseName);
     void view_grade(const QString &courseName);
     bool course_exists(const QString &courseName);
-    QString getUserId();
 
 private:
-    Ui::student*ui;
+    Ui::student * ui;
     QString enrolledCourses [5];
-     QString m_userId;
 
 };
 
