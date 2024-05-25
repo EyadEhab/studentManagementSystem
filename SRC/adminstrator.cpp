@@ -39,10 +39,13 @@ void adminstrator::addCourse(const QString& courseName)
     for (const auto& course : courses) {
         if (course.getName() == courseName) {
             qWarning() << "Course already exists!";
+            QMessageBox::information(this, "Error", "Course already exists!");
             return;
         }
     }
     courses.append(Course(courseName));
+    QMessageBox::information(this, "Success", "Course Added successfully.");
+
     qDebug() << "Course" << courseName << "added successfully.";
     saveCoursesToFile();
 }
@@ -54,10 +57,12 @@ void adminstrator::removeCourse(const QString& courseName)
             courses.removeAt(i);
             qDebug() << "Course" << courseName << "removed successfully.";
             saveCoursesToFile();
+            QMessageBox::information(this, "Success", "Course Removed successfully.");
             return;
         }
     }
     qWarning() << "Course not found!";
+    QMessageBox::information(this, "Error", "Course not found!");
 }
 
 void adminstrator::listCourses() const

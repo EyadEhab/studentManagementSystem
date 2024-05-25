@@ -50,7 +50,7 @@ void Signup2::on_signUp_4_clicked()
         QString password = ui->password_4->text();
         QString kind;
         if (ui->admin_4->isChecked()) {
-            kind = "administrator";
+            kind = "adminstrator";
         } else if (ui->student_4->isChecked()) {
             kind = "student";
         } else if (ui->instractur_4->isChecked()) {

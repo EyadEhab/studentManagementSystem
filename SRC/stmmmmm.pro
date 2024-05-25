@@ -32,7 +32,6 @@ HEADERS += \
 FORMS += \
     adduser.ui \
     adminstrator.ui \
-    dialog.ui \
     mainwindow.ui \
     signup2.ui \
     instructor.ui \
