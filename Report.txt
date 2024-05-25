@@ -1,0 +1,48 @@
+welcome to our group(Cout<<� hello world �;)
+
+Team leader:Eyad Ehab, ID:23-101054
+Team member1:Youssef Osama,ID:22-101233
+Team member2:Ahmed Ehab,ID:23-101005
+Team member3:Yassin Hany,ID:23-101235
+Team member4:Ali Amin,ID:23-101159
+
+
+
+Our group project was about student managment system,we used Github for our team collabiration,when you run our application you will notice that there will be a pop up page asking for your user id and password and there will be two buttons one of them is login and the other is sign in and because it's your first time entering it you will press sign in
+then enter your ID and create your own password then choose wether you are instructor or a student or even an adminstrator then press signup then close these page and open the login page and enter your ID and password then if you choose that you are a student in the sign up page there will be another page presented
+asking you if you want to enroll,drop or even view your grades.If you choose to be an instructor you will notice a pop up page that asks you if you want to add a course or remove one or to update a grade by entering students id and the course name and then enter the new grade.If you choose to be an adminstrator
+you will otice a diffrent page from the previous two asking if you want to add,remove course and if you want to remove a user or add one.
+
+
+                                       we used 6 classes and we will discusse them now:
+
+The first class we used was mainwindow these class views the page wich asks for the userID and password and it has two buttons the first one is login and press on it if it's not your first time entering the application otherwise press signup.
+the second class was the adminstrator to view the page for only the adminstrators wich have add,remove course or add,remove user.
+the third class was the instructor to view the page for only the instructors wich have add,remove course and to update grade by entering student's id and the name of the course and the new grade.
+the fourth class was the students to view a page for only the students wich have add course name wich let him enter the course name and choose wether to enroll or to drop or even to view it's grades.
+the fifth class was the adduser and it's viewed only for the adminstartor when he presses add user it views the page wich asks for the userID and password.
+the sixth class was the signup and it's viewed when the user press on the sign up button in the main page or the main window and it asks the user to enter it's id and to create a password and then press the sign up button to save data .
+ 
+                                        we used the OOP concepts like these:
+ 
+student,instructor and adminstrator inherited from user and we used "course" for the aggregiation of the three of them and main window has aggregiation with sign up.
+
+                                        workload distribution:
+
+Team leader:Eyad Ehab, ID:23-101054, He worked mainly on finding resourses to help us on how to use the syntax of the gui and he worked on the gui of the adduser and sign up and he created both of these classes and helped us with some classes .
+
+Team member1:Youssef Osama,ID:22-101233
+Team member2:Ahmed Ehab,ID:23-101005
+
+                                     both of them created the adminstrator and students classes with gui and created the files wich was the user file and course file and created the save and load.
+
+Team member3:Yassin Hany,ID:23-101235
+Team member4:Ali Amin,ID:23-101159
+                                    both of them created the uml and created the instructor and the mainwindow classes with gui and helped in some problems in some classes
+
+
+                                                Refrences we used:
+
+Github
+asta uml
+Qt creator
