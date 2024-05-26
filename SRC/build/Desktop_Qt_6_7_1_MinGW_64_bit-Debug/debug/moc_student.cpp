@@ -124,7 +124,6 @@ void student::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 2: _t->enroll_course((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 3: _t->drop_course((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 4: _t->view_grade((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-
         default: ;
         }
     }
