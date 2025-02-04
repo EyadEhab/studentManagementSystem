@@ -85,7 +85,6 @@ void instructor::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 0: _t->on_addCourse_clicked(); break;
         case 1: _t->on_removeCourse_clicked(); break;
         case 2: _t->on_updateGrade_clicked(); break;
-        case 3: _t->addCourse((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 4: _t->add_grade((*reinterpret_cast< const QString(*)>(_a[1])),(*reinterpret_cast< const QString(*)>(_a[2])),(*reinterpret_cast< const QString(*)>(_a[3]))); break;
         default: ;
         }

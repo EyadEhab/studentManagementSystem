@@ -92,8 +92,6 @@ void student::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 2: _t->enroll_course((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 3: _t->drop_course((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 4: _t->view_grade((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 5: { bool _r = _t->course_exists((*reinterpret_cast< const QString(*)>(_a[1])));
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     }

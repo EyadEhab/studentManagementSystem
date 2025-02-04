@@ -95,10 +95,6 @@ void adminstrator::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
         switch (_id) {
         case 0: _t->on_addCourse_clicked(); break;
         case 1: _t->on_removeCourse_clicked(); break;
-        case 2: _t->on_pushButton_clicked(); break;
-        case 3: _t->on_removeUser_clicked(); break;
-        case 4: _t->on_addperson_clicked(); break;
-        case 5: _t->on_add_clicked(); break;
         case 6: _t->on_plus_clicked(); break;
         case 7: _t->on_removed_2_clicked(); break;
         default: ;
