@@ -1,7 +1,7 @@
 #ifndef INSTRUCTOR_H
 #define INSTRUCTOR_H
 #include "user.h"
-#include "Course.h"
+//#include "Course.h"
 
 #include <QDialog>
 #include <QStringList>
@@ -40,7 +40,7 @@ private slots:
 
 
 private:
-    Course* taughtCourses[10];
+    //Course* taughtCourses[10];
     int numTaughtCourses;
     Ui::instructor *ui;
 };

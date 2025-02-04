@@ -1,6 +1,6 @@
 #include "start.h"
 #include "ui_start.h"
-#include "mainwindow.h"
+#include "MainWindow.h"
 #include <QDialog>
 
 start::start(QWidget *parent)

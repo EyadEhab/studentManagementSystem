@@ -1,5 +1,6 @@
 #include "adduser.h"
 #include "ui_adduser.h"
+#include <QDebug>
 
 adduser::adduser(QWidget *parent)
     : QDialog(parent)

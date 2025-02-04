@@ -1,5 +1,6 @@
 #ifndef USER_H
 #define USER_H
+#include <QDebug>
 #include <QMainWindow>
 #include <iostream>
 #include <fstream>
